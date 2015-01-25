@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Upload VSIX";
+}
+
+<h1>upload</h1>
+
+<form action="upload" id="upload">
+    <input type="url" placeholder="URL to VSIX" value="https://ci.appveyor.com/api/buildjobs/qahx3eg32h6h0nuk/artifacts/src/vsix/bin/Release/OpenFromPortal.vsix    " />
+    <input type="submit" value="Upload" />
+</form>
+
+
+@section Scripts {
+    <script src="~/js/upload.js"></script>
+}

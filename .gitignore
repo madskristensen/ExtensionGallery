@@ -6,6 +6,10 @@
 *.user
 *.userosscache
 *.sln.docstates
+bower_components
+node_modules
+**/wwwroot/extensions
+**/wwwroot/lib
 
 # Build results
 [Dd]ebug/

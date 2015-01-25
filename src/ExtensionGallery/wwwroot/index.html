@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="galleryApp">
+<head>
+    <meta charset="utf-8" />
+    <title>Visual Studio Gallery</title>
+    <link href="/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/site.566b4762.css">
+    <base href="/" />
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <nav class="container">
+                <a class="navbar-brand" href="#/">Visual Studio Extension Gallery</a>
+                <ul class="nav navbar-nav pull-right">
+                    <li><a class="pull-right" href="#upload">Upload new extension</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <main>
+            <ng-view></ng-view>
+        </main>
+
+        <footer>
+            Copyright &copy; 2014 <a href="http://madskristensen">Mads Kristensen</a>
+        </footer>
+    </div>
+
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+    <script src="js/optimized.ecf364af.js"></script>
+</body>
+</html>
