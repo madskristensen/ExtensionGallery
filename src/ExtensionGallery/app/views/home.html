@@ -17,21 +17,22 @@
 
 	<article ng-repeat="package in packages | filter: packageSearch">
 		<img class="icon" ng-src="{{package.Icon}}" alt="{{package.Name}}" />
+		<div>
+			<h3>
+				<a ng-href="#/extension/{{package.ID}}">{{package.Name}}</a>
+			</h3>
 
-		<h3>
-			<a ng-href="#/extension/{{package.ID}}">{{package.Name}}</a>
-		</h3>
+			<a ng-href="#/author/{{package.Author | lowercase }}">{{package.Author}}</a>
+			<p>{{package.Description}}</p>
 
-		<a ng-href="#/author/{{package.Author | lowercase }}">{{package.Author}}</a>
-		<p>{{package.Description}}</p>
+			<a class="btn-sm btn-success" ng-href="{{package.DownloadUrl}}">
+				<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Download
+			</a>
 
-		<a class="btn-sm btn-success" ng-href="{{package.DownloadUrl}}">
-			<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Download
-		</a>
-
-		<a ng-href="/feed/extension/{{package.ID}}" class="btn-sm btn-default">
-			<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Feed
-		</a>
-		<time>{{package.DatePublished | date:'&nbsp;MMM d. yyyy'}}</time>
+			<a ng-href="/feed/extension/{{package.ID}}" class="btn-sm btn-default">
+				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Feed
+			</a>
+			<time>{{package.DatePublished | date:'&nbsp;MMM d. yyyy'}}</time>
+		</div>
 	</article>
 </div>

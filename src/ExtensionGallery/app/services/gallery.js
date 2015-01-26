@@ -38,8 +38,8 @@
 		return $http.get(urlBase + "get/" + id);
 	}
 
-	this.upload = function (bytes) {
-		return $http.post(urlBase + 'uploadfile', new Blob([bytes], {}));
+	this.upload = function (bytes, query) {
+		return $http.post(urlBase + "uploadfile" + query, new Blob([bytes], {}));
 	}
 
 }]);

@@ -19,5 +19,7 @@ namespace ExtensionGallery.Models
         public string GettingStartedUrl { get; set; }
         public string ReleaseNotesUrl { get; set; }
         public string MoreInfoUrl { get; set; }
-    }
+		public string Repo { get; set; }
+		public string IssueTracker { get; set; }
+	}
 }

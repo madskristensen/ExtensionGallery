@@ -43,10 +43,12 @@ h3 {
   padding: 10px;
   margin-top: 3em;
 }
+#extensions article > div {
+  margin-left: 120px;
+}
 #extensions article .icon {
   float: left;
   width: 90px;
-  margin-right: 2em;
 }
 #extensions article .preview {
   float: left;
@@ -54,17 +56,32 @@ h3 {
   margin-right: 2em;
   margin-bottom: 2em;
 }
-#extensions article .details {
+#extensions article .properties {
+  margin-left: 200px !important;
+}
+#extensions article .properties .details {
   line-height: 1;
   margin: 10px 0 15px 0;
   display: inline-block;
 }
-#extensions article .details > p > strong {
+#extensions article .properties .details > p > strong {
   display: inline-block;
-  width: 90px;
+  width: 130px;
+}
+#extensions article .properties .details ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+#extensions article .properties .details ul li {
+  display: inline-block;
+  margin-right: 1em;
+}
+#upload {
+  max-width: 450px;
 }
 #upload input[type=file] {
-  width: 500px;
+  width: 100%;
 }
 #upload a[ng-click] {
   margin-top: 1em;

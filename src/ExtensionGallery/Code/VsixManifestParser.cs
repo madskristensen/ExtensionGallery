@@ -8,7 +8,7 @@ namespace ExtensionGallery.Code
 {
 	public class VsixManifestParser
     {
-        public Package CreateFromManifest(string tempFolder)
+        public Package CreateFromManifest(string tempFolder, string repo, string issuetracker)
         {
             string xml = File.ReadAllText(Path.Combine(tempFolder, "extension.vsixmanifest"));
             XmlDocument doc = new XmlDocument();
@@ -29,6 +29,8 @@ namespace ExtensionGallery.Code
             package.ReleaseNotesUrl = ParseNode(doc, "ReleaseNotes", false);
             package.GettingStartedUrl = ParseNode(doc, "GettingStartedGuide", false);
             package.MoreInfoUrl = ParseNode(doc, "MoreInfoUrl", false);
+			package.Repo = repo;
+			package.IssueTracker = issuetracker;
 
             string license = ParseNode(doc, "License", false);
             if (!string.IsNullOrEmpty(license))

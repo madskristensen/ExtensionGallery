@@ -4,12 +4,24 @@
     iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
 </p>
 
-<form id="upload" ng-hide="form.$submitted">
-    <input type="file" id="uploadfile" placeholder="URI to VSIX file" required />
+<form id="upload" ng-hide="form.$submitted" ng-submit="upload()">
+	<div class="form-group">
+		<label for="repo">Source code</label>
+		<input type="url" ng-model="repo" id="repo" class="form-control" placeholder="Url to the source code repository" />
+	</div>
 
-    <a class="btn-sm btn-primary" ng-click="upload()">
-		<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Upload
-	</a>
+	<div class="form-group">
+		<label for="issuetracker">Issue tracker</label>
+		<input type="url" id="issuetracker" ng-model="issuetracker" class="form-control" placeholder="Url to the issue tracker" />
+	</div>
+
+	<div class="form-group">
+		<label for="uploadfile">Select file</label>
+		<input type="file" id="uploadfile" accept=".vsix" required />
+		<p class="help-block">Only .vsix files are supported</p>
+	</div>
+
+    <input type="submit" value="Upload" class="btn-sm btn-primary" />
 
     <p class="has-error" ng-show="upload.url.$invalid || error">{{error}}</p>
 </form>

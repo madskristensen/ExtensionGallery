@@ -5,6 +5,7 @@ using Microsoft.AspNet.Mvc;
 using System.IO;
 using System.Threading.Tasks;
 using ExtensionGallery.Code;
+using System;
 
 namespace ExtensionGallery2.Controllers
 {
@@ -32,10 +33,10 @@ namespace ExtensionGallery2.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> UploadFile()
+		public async Task<IActionResult> UploadFile([FromQuery]string repo, string issuetracker)
 		{
 			Stream bodyStream = Context.Request.Body;
-			Package package = await _helper.ProcessVsix(bodyStream);
+			Package package = await _helper.ProcessVsix(bodyStream, repo, issuetracker);
 
 			return Json(package);
 		}

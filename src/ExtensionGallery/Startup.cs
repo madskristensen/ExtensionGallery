@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNet.Http;
 using System.Linq;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Diagnostics;
@@ -53,7 +54,7 @@ namespace ExtensionGallery
 			// Add the following to the request pipeline only in development environment.
 			if (string.Equals(env.EnvironmentName, "Development", StringComparison.OrdinalIgnoreCase))
 			{
-				app.UseBrowserLink();
+				//app.UseBrowserLink();
 				app.UseErrorPage(ErrorPageOptions.ShowAll);
 				//app.UseDatabaseErrorPage(DatabaseErrorPageOptions.ShowAll);
 			}
@@ -61,8 +62,10 @@ namespace ExtensionGallery
 			{
 				// Add Error handling middleware which catches all application specific errors and
 				// send the request to the following path or controller action.
-				app.UseErrorHandler("/Home/Error");
+				//app.UseErrorHandler("/Home/Error");
 			}
+
+			app.UseErrorPage(ErrorPageOptions.ShowAll);
 
 			// Add static files to the request pipeline.
 			var options = new StaticFileOptions();

@@ -2,7 +2,13 @@
 galleryApp.controller('uploadController', ['$scope', '$location', 'dataService', function ($scope, $location, dataService) {
 
 	$scope.error = "";
+	$scope.repo = "";
+	$scope.issuetracker = "";
 
+	if (localStorage) {
+		$scope.repo = localStorage["upload.repo"];
+		$scope.issuetracker = localStorage["upload.issuetracker"];
+	}
 
 
 	$scope.upload = function () {
@@ -10,7 +16,7 @@ galleryApp.controller('uploadController', ['$scope', '$location', 'dataService',
 		var reader = new FileReader();
 		reader.onload = function (result) {
 
-			dataService.upload(result.target.result)
+			dataService.upload(result.target.result, "?repo=" + encodeURIComponent($scope.repo) + "&issuetracker=" + encodeURIComponent($scope.issuetracker))
 			    .success(function (data) {
 			    	$location.path('/extension/' + data.ID);
 			    })
@@ -26,6 +32,11 @@ galleryApp.controller('uploadController', ['$scope', '$location', 'dataService',
 		};
 
 		reader.readAsArrayBuffer(fileInput.files[0]);
+
+		if (localStorage) {
+			localStorage["upload.repo"] = $scope.repo;
+			localStorage["upload.issuetracker"] = $scope.issuetracker;
+		}
 	};
 
 }]);
