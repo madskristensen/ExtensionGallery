@@ -1,0 +1,64 @@
+body {
+  padding-top: 60px;
+  font-family: arial;
+}
+header {
+  margin-bottom: 3em;
+}
+header a {
+  color: black;
+  cursor: pointer!important;
+}
+header a:hover {
+  text-decoration: none;
+}
+h2 {
+  font-size: 1.6em;
+  font-weight: bold;
+}
+h3 {
+  display: inline;
+  font-size: 1.3em;
+}
+#extensions article {
+  clear: both;
+  margin-bottom: 2em;
+  padding: 10px;
+}
+#extensions article .icon {
+  float: left;
+  width: 90px;
+  margin-right: 2em;
+  margin-top: 15px;
+}
+#extensions article .preview {
+  float: left;
+  width: 175px;
+  margin-right: 1.5em;
+  /*margin-bottom: 2em;*/
+}
+#extensions article .details {
+  line-height: 1;
+  margin: 10px 0 15px 0;
+  display: inline-block;
+}
+#extensions article .details > p > strong {
+  display: inline-block;
+  width: 90px;
+}
+#upload input[type=file] {
+  width: 500px;
+}
+#upload a[ng-click] {
+  margin-top: 1em;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+}
+#upload .has-error {
+  color: red !important;
+}
+footer {
+  clear: both;
+  margin-top: 3em;
+}

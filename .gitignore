@@ -10,8 +10,6 @@ bower_components
 node_modules
 **/wwwroot/extensions
 **/wwwroot/lib
-**/wwwroot/js
-**/wwwroot/css
 
 # Build results
 [Dd]ebug/
