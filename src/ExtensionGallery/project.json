@@ -47,7 +47,8 @@
 		"node_modules",
 		"bower_components",
 		"app",
-		".tmp"
+		".tmp",
+		"Views"
 	],
 	"packExclude": [
 		"node_modules",
@@ -58,7 +59,9 @@
 		".tmp",
 		"**.kproj",
 		"**.user",
-		"**.vspscc"
+		"**.vspscc",
+		"**._references.js",
+		"Views"
 	],
 	"scripts": {
 		"postrestore": [ "npm install" ],

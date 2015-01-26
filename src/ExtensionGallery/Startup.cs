@@ -99,7 +99,8 @@ namespace ExtensionGallery2
 
 				routes.MapRoute(
 					name: "default",
-					template: "{controller}/{action}/{id?}/{version?}");
+					template: "{controller}/{action}/{id?}",
+					defaults: new { controller = "Home", action = "Index" });
 
 				//defaults: new { controller = "Home", action = "Index" });
 

@@ -14,3 +14,4 @@
 /// <reference path="lib/angular-resource/angular-resource.js" />
 /// <reference path="js/optimized.29a594a5.js" />
 /// <reference path="../app/controllers/author.js" />
+/// <reference path="js/optimized.3fb1472e.js" />

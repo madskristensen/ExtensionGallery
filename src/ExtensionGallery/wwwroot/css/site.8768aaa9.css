@@ -7,7 +7,7 @@ header {
 }
 header a {
   color: black;
-  cursor: pointer!important;
+  cursor: pointer !important;
 }
 header a:hover {
   text-decoration: none;
@@ -18,24 +18,25 @@ h2 {
 }
 h3 {
   display: inline;
-  font-size: 1.3em;
+  font-size: 1.6em;
 }
 #extensions article {
   clear: both;
   margin-bottom: 2em;
   padding: 10px;
 }
+#extensions article > p {
+  line-height: 35px;
+}
 #extensions article .icon {
   float: left;
   width: 90px;
   margin-right: 2em;
-  margin-top: 15px;
 }
 #extensions article .preview {
   float: left;
   width: 175px;
   margin-right: 1.5em;
-  /*margin-bottom: 2em;*/
 }
 #extensions article .details {
   line-height: 1;
@@ -60,5 +61,5 @@ h3 {
 }
 footer {
   clear: both;
-  margin-top: 3em;
+  margin-top: 7em;
 }

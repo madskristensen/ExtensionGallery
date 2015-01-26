@@ -1,81 +1,83 @@
 ﻿body {
-    padding-top: 60px;
-    font-family: arial;
+	padding-top: 60px;
+	font-family: arial;
 }
 
 header {
-    margin-bottom: 3em;
+	margin-bottom: 3em;
 
-    a {
-        color: black;
-		cursor: pointer!important;
+	a {
+		color: black;
+		cursor: pointer !important;
 
-        &:hover {
-            text-decoration: none;
-        }
-    }
+		&:hover {
+			text-decoration: none;
+		}
+	}
 }
 
 h2 {
-    font-size: 1.6em;
-    font-weight: bold;
+	font-size: 1.6em;
+	font-weight: bold;
 }
 
 h3 {
-    display: inline;
-    font-size: 1.3em;
+	display: inline;
+	font-size: 1.6em;
 }
 
 #extensions article {
-    clear: both;
-    margin-bottom: 2em;
+	clear: both;
+	margin-bottom: 2em;
 	padding: 10px;
 
-    .icon {
-        float: left;
-        width: 90px;
-        margin-right: 2em;
-		margin-top: 15px;
-    }
+	> p {
+		line-height: 35px;
+	}
 
-    .preview {
-        float: left;
-        width: 175px;
-        margin-right: 1.5em;
-        /*margin-bottom: 2em;*/
-    }
+	.icon {
+		float: left;
+		width: 90px;
+		margin-right: 2em;
+	}
 
-    .details {
-        line-height: 1;
-        margin: 10px 0 15px 0;
-        display: inline-block;
+	.preview {
+		float: left;
+		width: 175px;
+		margin-right: 1.5em;
+	}
 
-        & > p > strong {
-            display: inline-block;
-            width: 90px;
-        }
-    }
+	.details {
+		line-height: 1;
+		margin: 10px 0 15px 0;
+		display: inline-block;
+
+		& > p > strong {
+			display: inline-block;
+			width: 90px;
+		}
+	}
 }
 
 #upload {
 
-    input[type=file] {
-        width: 500px;
-    }
+	input[type=file] {
+		width: 500px;
+	}
 
 	a[ng-click] {
-        margin-top: 1em;
+		margin-top: 1em;
 		display: inline-block;
-		cursor	: pointer;
+		cursor: pointer;
 		text-decoration: none;
-    }
+	}
 
-    .has-error {
-        color: red !important;
-    }
+	.has-error {
+		color: red !important;
+	}
 }
 
 footer {
-    clear: both;
-    margin-top: 3em;
+	clear: both;
+	margin-top: 7em;
 }

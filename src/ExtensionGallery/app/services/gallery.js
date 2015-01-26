@@ -1,6 +1,6 @@
 ﻿galleryApp.service("dataService", ["$http", function ($http) {
 
-	var urlBase = "/home/";
+	var urlBase = "/extension/";
 
 	this.normalizePackage = function (package) {
 
@@ -31,11 +31,11 @@
 	}
 
 	this.getAllExtensions = function () {
-		return $http.get(urlBase + "getallextensions");
+		return $http.get(urlBase);
 	}
 
 	this.getExtension = function (id) {
-		return $http.get(urlBase + "extension/" + id);
+		return $http.get(urlBase + "get/" + id);
 	}
 
 	this.upload = function (bytes) {
