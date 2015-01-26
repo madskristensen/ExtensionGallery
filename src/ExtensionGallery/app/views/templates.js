@@ -2,12 +2,12 @@ angular.module('galleryApp').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('app/views/extension.html',
-    "<div id=extensions><div ng-model=package><h1 class=page-header>{{package.Name}} - {{package.Version}}</h1><article><img class=preview ng-src={{package.Preview}} alt=\"{{package.Name}}\"><p>{{package.Description}}</p><div class=details><p><strong>Author:</strong> {{package.Author}}</p><p><strong>Supports:</strong> Visual Studio <span ng-repeat=\"version in package.SupportedVersions\">{{version + '&nbsp;'}}</span></p><p><strong>Tags:</strong> {{package.Tags}}</p><p><strong>Updated:</strong> <time>{{package.DatePublished | date:'MMM d. yyyy'}}</time></p></div><br><a class=\"btn btn-primary\" ng-href={{package.DownloadUrl}}>Download</a></article><div ng-show=package.License><h2>License</h2><pre>{{package.License}}</pre></div></div></div>"
+    "<div id=extensions><div ng-model=package><h1 class=page-header>{{package.Name}} - {{package.Version}}</h1><article><img class=preview ng-src={{package.Preview}} alt=\"{{package.Name}}\"><p>{{package.Description}}</p><div class=details><p><strong>Author:</strong> {{package.Author}}</p><p><strong>Supports:</strong> Visual Studio <span ng-repeat=\"version in package.SupportedVersions\">{{version + '&nbsp;'}}</span></p><p><strong>Tags:</strong> {{package.Tags}}</p><p><strong>Updated:</strong> <time>{{package.DatePublished | date:'MMM d. yyyy'}}</time></p></div><br><a class=\"btn-sm btn-primary\" ng-href={{package.DownloadUrl}}><span class=\"glyphicon glyphicon-cloud-download\" aria-hidden=true></span> Download</a> <a href=/home/feed/{{package.ID}} class=\"btn-sm btn-success\"><span class=\"glyphicon glyphicon-cog\" aria-hidden=true></span> Feed</a></article><div ng-show=package.License><h2>License</h2><pre>{{package.License}}</pre></div></div></div>"
   );
 
 
   $templateCache.put('app/views/home.html',
-    "<div id=extensions><article ng-repeat=\"package in packages\"><img class=icon ng-src={{package.Icon}} alt=\"{{package.Name}}\"><h2><a ng-href=#/extension/{{package.ID}}>{{package.Name}} - {{package.Version}}</a></h2><p>{{package.Description}}</p><a class=\"btn btn-primary\" ng-href={{package.DownloadUrl}}>Download</a> <time>{{package.DatePublished | date:'MMM d. yyyy'}}</time></article></div>"
+    "<div id=extensions><article ng-repeat=\"package in packages\"><img class=icon ng-src={{package.Icon}} alt=\"{{package.Name}}\"><h2><a ng-href=#/extension/{{package.ID}}>{{package.Name}} - {{package.Version}}</a></h2><p>{{package.Description}}</p><a class=\"btn-sm btn-primary\" ng-href={{package.DownloadUrl}}><span class=\"glyphicon glyphicon-cloud-download\" aria-hidden=true></span> Download</a> <a href=/home/feed/{{package.ID}} class=\"btn-sm btn-success\"><span class=\"glyphicon glyphicon-cog\" aria-hidden=true></span> Feed</a> <time>{{package.DatePublished | date:'MMM d. yyyy'}}</time></article></div>"
   );
 
 

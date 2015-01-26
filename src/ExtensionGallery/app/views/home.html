@@ -1,9 +1,15 @@
 ﻿<div id="extensions">
-    <article ng-repeat="package in packages">
-        <img class="icon" ng-src="{{package.Icon}}" alt="{{package.Name}}" />
-        <h2><a ng-href="#/extension/{{package.ID}}">{{package.Name}} - {{package.Version}}</a></h2>
-        <p>{{package.Description}}</p>
-        <a class="btn btn-primary" ng-href="{{package.DownloadUrl}}">Download</a>
-        <time>{{package.DatePublished | date:'MMM d. yyyy'}}</time>
-    </article>
+	<article ng-repeat="package in packages">
+		<img class="icon" ng-src="{{package.Icon}}" alt="{{package.Name}}" />
+		<h2><a ng-href="#/extension/{{package.ID}}">{{package.Name}} - {{package.Version}}</a></h2>
+		<p>{{package.Description}}</p>
+		<a class="btn-sm btn-primary" ng-href="{{package.DownloadUrl}}">
+			<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Download
+		</a>
+
+		<a href="/home/feed/{{package.ID}}" class="btn-sm btn-success">
+			<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Feed
+		</a>
+		<time>{{package.DatePublished | date:'MMM d. yyyy'}}</time>
+	</article>
 </div>

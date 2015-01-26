@@ -45,6 +45,11 @@ namespace ExtensionGallery.Code
 			writer.WriteValue(package.Name);
 			writer.WriteEndElement(); // title
 
+			writer.WriteStartElement("link");
+			writer.WriteAttributeString("rel", "alternate");
+			writer.WriteAttributeString("href", baseUrl + "/extensions/" + package.ID + "/extension.vsix");
+			writer.WriteEndElement(); // link
+
 			writer.WriteStartElement("summary");
 			writer.WriteAttributeString("type", "text");
 			writer.WriteValue(package.Description);
