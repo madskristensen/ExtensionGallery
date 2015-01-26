@@ -5,7 +5,7 @@
 </p>
 
 <form id="upload" ng-hide="form.$submitted" ng-submit="upload()">
-    <input type="url" ng-model="url" placeholder="URI to VSIX file" required />
+    <input type="file" id="uploadfile" placeholder="URI to VSIX file" required />
     <input type="submit" class="btn btn-primary" value="Upload" />
 
     <p class="has-error" ng-show="upload.url.$invalid || error">{{error}}</p>

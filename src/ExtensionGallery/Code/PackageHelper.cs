@@ -1,17 +1,14 @@
-﻿using ExtensionGallery2.Models;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
-using System.Net.Http.Headers;
+using ExtensionGallery.Models;
+using Newtonsoft.Json;
 
-namespace ExtensionGallery2.Code
+namespace ExtensionGallery.Code
 {
 	public class PackageHelper
 	{
@@ -33,10 +30,13 @@ namespace ExtensionGallery2.Code
 
 				foreach (string extension in Directory.EnumerateDirectories(_extensionRoot))
 				{
-					//string version = Directory.GetDirectories(extension).Max(dir => new Version(new DirectoryInfo(dir).Name)).ToString();
-					string content = File.ReadAllText(Path.Combine(extension, "extension.json"));
-					Package package = JsonConvert.DeserializeObject(content, typeof(Package)) as Package;
-					packages.Add(package);
+					string json = Path.Combine(extension, "extension.json");
+					if (File.Exists(json))
+					{
+						string content = File.ReadAllText(json);
+						Package package = JsonConvert.DeserializeObject(content, typeof(Package)) as Package;
+						packages.Add(package);
+					}
 				}
 
 				_cache = new List<Package>();
@@ -56,23 +56,7 @@ namespace ExtensionGallery2.Code
 			string folder = Path.Combine(_extensionRoot, id);
 			List<Package> packages = new List<Package>();
 
-			//if (string.IsNullOrEmpty(version) || true)
-			//{
-			//    var versionDirs = Directory.GetDirectories(folder).OrderByDescending(p => new Version(new DirectoryInfo(p).Name));
-
-			//    foreach (string dir in versionDirs)
-			//    {
-			//        Package package = DeserializePackage(dir);
-			//        packages.Add(package);
-			//    }
-			//}
-			//else
-			//{
 			return DeserializePackage(folder);
-			//packages.Add(package);
-			//}
-
-			//return packages;
 		}
 
 		private static Package DeserializePackage(string version)
@@ -81,28 +65,33 @@ namespace ExtensionGallery2.Code
 			return JsonConvert.DeserializeObject(content, typeof(Package)) as Package;
 		}
 
-		public async Task<Package> ProcessVsixRequest(string url)
+		public async Task<Package> ProcessVsix(Stream vsixStream)
 		{
 			string tempFolder = Path.Combine(_webroot, "temp", Guid.NewGuid().ToString());
 
 			try
 			{
-				string tempVsix = Path.Combine(tempFolder, Guid.NewGuid() + ".vsix");
+				string tempVsix = Path.Combine(tempFolder, "extension.vsix");
 
 				if (!Directory.Exists(tempFolder))
 					Directory.CreateDirectory(tempFolder);
 
-				await DownloadVsix(url, tempVsix);
+				using (FileStream fileStream = File.Create(tempVsix))
+				{
+					await vsixStream.CopyToAsync(fileStream);
+				}
 
 				ZipFile.ExtractToDirectory(tempVsix, tempFolder);
 
 				string manifest = Path.Combine(tempFolder, "extension.vsixmanifest");
 				VsixManifestParser parser = new VsixManifestParser();
-				Package package = parser.CreateFromManifest(manifest, url, tempFolder);
+				Package package = parser.CreateFromManifest(manifest, "http://foo.com", tempFolder);
 
 				string basePath = Path.Combine(_extensionRoot, package.ID);
 
 				SavePackage(tempFolder, manifest, package, basePath);
+
+				File.Copy(tempVsix, Path.Combine(basePath, "extension.vsix"), true);
 
 				return package;
 			}
@@ -112,24 +101,12 @@ namespace ExtensionGallery2.Code
 			}
 		}
 
-		private async Task DownloadVsix(string url, string destFileName)
-		{
-			using (HttpClient client = new HttpClient())
-			{
-				string httpUrl = url.Replace("https:", "http:");
-				Uri u = new Uri(httpUrl, UriKind.Absolute);
-
-				client.BaseAddress = new Uri(u.Scheme + "://" + u.Host);
-
-				byte[] buffer = await client.GetByteArrayAsync(u.PathAndQuery);
-				File.WriteAllBytes(destFileName, buffer);
-			}
-		}
-
 		private void SavePackage(string temp, string manifest, Package package, string basePath)
 		{
-			if (!Directory.Exists(basePath))
-				Directory.CreateDirectory(basePath);
+			if (Directory.Exists(basePath))
+				Directory.Delete(basePath, true);
+
+			Directory.CreateDirectory(basePath);
 
 			File.Copy(manifest, Path.Combine(basePath, "extension.vsixmanifest"), true);
 

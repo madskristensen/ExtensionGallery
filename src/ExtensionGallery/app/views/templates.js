@@ -12,7 +12,7 @@ angular.module('galleryApp').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('app/views/upload.html',
-    "<h1 class=page-header>Upload new extension</h1><p>Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.</p><form id=upload ng-hide=form.$submitted ng-submit=upload()><input type=url ng-model=url placeholder=\"URI to VSIX file\" required> <input type=submit class=\"btn btn-primary\" value=\"Upload\"><p class=has-error ng-show=\"upload.url.$invalid || error\">{{error}}</p></form>"
+    "<h1 class=page-header>Upload new extension</h1><p>Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.</p><form id=upload ng-hide=form.$submitted ng-submit=upload()><input type=file id=uploadfile placeholder=\"URI to VSIX file\" required> <input type=submit class=\"btn btn-primary\" value=\"Upload\"><p class=has-error ng-show=\"upload.url.$invalid || error\">{{error}}</p></form>"
   );
 
 }]);

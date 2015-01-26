@@ -48,8 +48,11 @@ h3 {
   display: inline-block;
   width: 90px;
 }
-#upload input[type=url] {
+#upload input[type=file] {
   width: 500px;
+}
+#upload input[type=submit] {
+  margin-top: 1em;
 }
 #upload .has-error {
   color: red !important;

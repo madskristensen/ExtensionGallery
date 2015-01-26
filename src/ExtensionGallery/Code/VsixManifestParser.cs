@@ -1,18 +1,12 @@
-﻿using ExtensionGallery2.Models;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
+using ExtensionGallery.Models;
 
-namespace ExtensionGallery2.Code
+namespace ExtensionGallery.Code
 {
-    public class VsixManifestParser
+	public class VsixManifestParser
     {
         public Package CreateFromManifest(string manifest, string url, string vsixFolder)
         {
@@ -31,7 +25,6 @@ namespace ExtensionGallery2.Code
             package.Preview = ParseNode(doc, "PreviewImage", false);
             package.Tags = ParseNode(doc, "Tags", false);
             package.DatePublished = DateTime.UtcNow;
-            package.DownloadUrl = url;
             package.SupportedVersions = GetSupportedVersions(doc);
             package.ReleaseNotesUrl = ParseNode(doc, "ReleaseNotes", false);
             package.GettingStartedUrl = ParseNode(doc, "GettingStartedGuide", false);

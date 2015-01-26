@@ -12,4 +12,3 @@
 /// <reference path="../app/views/templates.js" />
 /// <reference path="../.tmp/concat/js/optimized.js" />
 /// <reference path="lib/angular-resource/angular-resource.js" />
-/// <reference path="js/optimized.ecf364af.js" />

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Xml;
 
-namespace ExtensionGallery2.Models
+namespace ExtensionGallery.Models
 {
-    public class Package
+	public class Package
     {
         public string ID { get; set; }
         public string Name { get; set; }
@@ -16,7 +13,6 @@ namespace ExtensionGallery2.Models
         public string Icon { get; set; }
         public string Preview { get; set; }
         public string Tags { get; set; }
-        public string DownloadUrl { get; set; }
         public DateTime DatePublished { get; set; }
         public IEnumerable<string> SupportedVersions { get; set; }
         public string License { get; set; }

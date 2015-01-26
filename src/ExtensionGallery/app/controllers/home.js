@@ -5,7 +5,9 @@ galleryApp.controller('homeController', ['$scope', 'dataService', function ($sco
     dataService.getAllExtensions().success(function (data) {
 
         for (var i = 0; i < data.length; i++) {
-            var package = data[i];
+        	var package = data[i];
+
+        	package.DownloadUrl = "/extensions/" + package.ID + "/extension.vsix";
 
             if (package.Icon)
                 package.Icon = '/extensions/' + package.ID + '/preview.png';
