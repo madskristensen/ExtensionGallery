@@ -83,15 +83,14 @@ namespace ExtensionGallery.Code
 
 				ZipFile.ExtractToDirectory(tempVsix, tempFolder);
 
-				string manifest = Path.Combine(tempFolder, "extension.vsixmanifest");
 				VsixManifestParser parser = new VsixManifestParser();
-				Package package = parser.CreateFromManifest(manifest, "http://foo.com", tempFolder);
+				Package package = parser.CreateFromManifest(tempFolder);
 
-				string basePath = Path.Combine(_extensionRoot, package.ID);
+				string vsixFolder = Path.Combine(_extensionRoot, package.ID);
 
-				SavePackage(tempFolder, manifest, package, basePath);
+				SavePackage(tempFolder, package, vsixFolder);
 
-				File.Copy(tempVsix, Path.Combine(basePath, "extension.vsix"), true);
+				File.Copy(tempVsix, Path.Combine(vsixFolder, "extension.vsix"), true);
 
 				return package;
 			}
@@ -101,26 +100,24 @@ namespace ExtensionGallery.Code
 			}
 		}
 
-		private void SavePackage(string temp, string manifest, Package package, string basePath)
+		private void SavePackage(string tempFolder, Package package, string vsixFolder)
 		{
-			if (Directory.Exists(basePath))
-				Directory.Delete(basePath, true);
+			if (Directory.Exists(vsixFolder))
+				Directory.Delete(vsixFolder, true);
 
-			Directory.CreateDirectory(basePath);
-
-			File.Copy(manifest, Path.Combine(basePath, "extension.vsixmanifest"), true);
-
-			string icon = Path.Combine(temp, package.Icon ?? string.Empty);
+			Directory.CreateDirectory(vsixFolder);
+			
+			string icon = Path.Combine(tempFolder, package.Icon ?? string.Empty);
 			if (File.Exists(icon))
-				File.Copy(icon, Path.Combine(basePath, "icon.png"), true);
+				File.Copy(icon, Path.Combine(vsixFolder, "icon.png"), true);
 
-			string preview = Path.Combine(temp, package.Preview ?? string.Empty);
+			string preview = Path.Combine(tempFolder, package.Preview ?? string.Empty);
 			if (File.Exists(preview))
-				File.Copy(preview, Path.Combine(basePath, "preview.png"), true);
+				File.Copy(preview, Path.Combine(vsixFolder, "preview.png"), true);
 
 			string json = JsonConvert.SerializeObject(package);
 
-			File.WriteAllText(Path.Combine(basePath, "extension.json"), json, Encoding.UTF8);
+			File.WriteAllText(Path.Combine(vsixFolder, "extension.json"), json, Encoding.UTF8);
 
 			if (_cache == null)
 				return;

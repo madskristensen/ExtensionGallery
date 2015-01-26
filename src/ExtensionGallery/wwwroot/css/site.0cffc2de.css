@@ -1,3 +1,7 @@
+html,
+body {
+  height: 100%;
+}
 body {
   padding-top: 60px;
   font-family: arial;
@@ -12,21 +16,30 @@ header a {
 header a:hover {
   text-decoration: none;
 }
+.container:first-child {
+  min-height: 100%;
+  overflow: auto;
+}
+main {
+  overflow: auto;
+  margin-bottom: 3em;
+  padding-bottom: 50px;
+}
 h2 {
   font-size: 1.6em;
   font-weight: bold;
 }
 h3 {
-  display: inline;
   font-size: 1.6em;
+  margin: 0;
+  padding: 0;
 }
 #extensions article {
   clear: both;
-  margin-bottom: 2em;
   padding: 10px;
 }
-#extensions article > p {
-  line-height: 35px;
+#extensions article:not(:last-child) {
+  margin-bottom: 3em;
 }
 #extensions article .icon {
   float: left;
@@ -60,6 +73,11 @@ h3 {
   color: red !important;
 }
 footer {
+  position: relative;
+  margin-top: -50px;
+  height: 50px;
   clear: both;
-  margin-top: 7em;
+  padding-top: 20px;
+  text-align: center;
+  border-top: 1px solid lightgray;
 }

@@ -8,9 +8,9 @@ namespace ExtensionGallery.Code
 {
 	public class VsixManifestParser
     {
-        public Package CreateFromManifest(string manifest, string url, string vsixFolder)
+        public Package CreateFromManifest(string tempFolder)
         {
-            string xml = File.ReadAllText(manifest);
+            string xml = File.ReadAllText(Path.Combine(tempFolder, "extension.vsixmanifest"));
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xml.Replace("xmlns=\"http://schemas.microsoft.com/developer/vsx-schema/2011\"", string.Empty));
 
@@ -33,7 +33,7 @@ namespace ExtensionGallery.Code
             string license = ParseNode(doc, "License", false);
             if (!string.IsNullOrEmpty(license))
             {
-                string path = Path.Combine(vsixFolder, license);
+                string path = Path.Combine(tempFolder, license);
                 if (File.Exists(path))
                 {
                     package.License = File.ReadAllText(path);

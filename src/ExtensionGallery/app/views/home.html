@@ -9,7 +9,8 @@
 <div id="extensions">
 	<article ng-repeat="package in packages">
 		<img class="icon" ng-src="{{package.Icon}}" alt="{{package.Name}}" />
-		<h3><a ng-href="#/extension/{{package.ID}}">{{package.Name}} - {{package.Version}}</a></h3>
+		<h3><a ng-href="#/extension/{{package.ID}}">{{package.Name}}</a></h3>
+		<a ng-href="#/author/{{package.Author | lowercase }}">{{package.Author}}</a>
 		<p>{{package.Description}}</p>
 		<a class="btn-sm btn-primary" ng-href="{{package.DownloadUrl}}">
 			<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Download

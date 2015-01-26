@@ -1,4 +1,10 @@
-﻿body {
+﻿@footer-height: 50px;
+
+html, body {
+	height: 100%;
+}
+
+body {
 	padding-top: 60px;
 	font-family: arial;
 }
@@ -16,23 +22,34 @@ header {
 	}
 }
 
+.container:first-child {
+	min-height: 100%;
+	overflow: auto;
+}
+
+main {
+	overflow: auto;
+	margin-bottom: 3em;
+	padding-bottom: @footer-height;
+}
+
 h2 {
 	font-size: 1.6em;
 	font-weight: bold;
 }
 
 h3 {
-	display: inline;
 	font-size: 1.6em;
+	margin: 0;
+	padding: 0;
 }
 
 #extensions article {
 	clear: both;
-	margin-bottom: 2em;
 	padding: 10px;
 
-	> p {
-		line-height: 35px;
+	&:not(:last-child) {
+		margin-bottom: 3em;
 	}
 
 	.icon {
@@ -78,6 +95,11 @@ h3 {
 }
 
 footer {
+	position: relative;
+	margin-top: -@footer-height;
+	height: @footer-height;
 	clear: both;
-	margin-top: 7em;
+	padding-top: 20px;
+	text-align: center;
+	border-top: 1px solid lightgray;
 }
