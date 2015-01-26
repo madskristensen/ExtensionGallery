@@ -7,13 +7,21 @@
 </h1>
 
 <div id="extensions">
-	<article ng-repeat="package in packages">
+	<div id="searchform" class="form-group">
+		<label class="sr-only" for="search">Search</label>
+		<div class="input-group">
+			<div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+			<input type="text" id="search" ng-model="query" placeholder="Search" class="form-control" />
+		</div>
+	</div>
+
+	<article ng-repeat="package in packages | filter: packageSearch">
 		<img class="icon" ng-src="{{package.Icon}}" alt="{{package.Name}}" />
 		<h3><a ng-href="#/extension/{{package.ID}}">{{package.Name}}</a></h3>
 		<a ng-href="#/author/{{package.Author | lowercase }}">{{package.Author}}</a>
 		<p>{{package.Description}}</p>
 		<a class="btn-sm btn-primary" ng-href="{{package.DownloadUrl}}">
-			<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>Download
+			<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Download
 		</a>
 
 		<a ng-href="/feed/extension/{{package.ID}}" class="btn-sm btn-success">

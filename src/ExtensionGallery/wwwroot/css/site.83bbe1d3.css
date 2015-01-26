@@ -10,6 +10,9 @@ a.btn:hover,
 a.btn-sm:hover {
   text-decoration: none;
 }
+.container {
+  max-width: 960px;
+}
 .container:first-child {
   min-height: 100%;
   overflow: auto;
@@ -28,12 +31,17 @@ h3 {
   margin: 0;
   padding: 0;
 }
+#extensions {
+  position: relative;
+}
+#extensions #searchform {
+  width: 250px;
+  float: right;
+}
 #extensions article {
   clear: both;
   padding: 10px;
-}
-#extensions article:not(:last-child) {
-  margin-bottom: 3em;
+  margin-top: 3em;
 }
 #extensions article .icon {
   float: left;
@@ -43,7 +51,8 @@ h3 {
 #extensions article .preview {
   float: left;
   width: 175px;
-  margin-right: 1.5em;
+  margin-right: 2em;
+  margin-bottom: 2em;
 }
 #extensions article .details {
   line-height: 1;

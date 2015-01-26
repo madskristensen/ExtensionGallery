@@ -4,13 +4,24 @@ galleryApp.controller('homeController', ['$scope', 'dataService', function ($sco
 	$scope.headline = "Nightly builds of popular extensions";
 	$scope.feed = "/feed/";
 
-    dataService.getAllExtensions().success(function (data) {
+	$scope.query = '';
 
-        for (var i = 0; i < data.length; i++) {
-        	dataService.normalizePackage(data[i]);
-        }
+	$scope.packageSearch = function (package) {
+		var q = $scope.query.toUpperCase();
 
-        $scope.packages = data;
-    });
+		return package.Name.toUpperCase().indexOf(q) != -1 ||
+			   package.Description.toUpperCase().indexOf(q) != -1 ||
+			   package.Author.toUpperCase().indexOf(q) != -1 ||
+			   package.Tags.toUpperCase().indexOf(q) != -1;
+	};
+
+	dataService.getAllExtensions().success(function (data) {
+
+		for (var i = 0; i < data.length; i++) {
+			dataService.normalizePackage(data[i]);
+		}
+
+		$scope.packages = data;
+	});
 
 }]);

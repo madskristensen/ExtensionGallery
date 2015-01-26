@@ -10,12 +10,16 @@ body {
 }
 
 a.btn:hover, a.btn-sm:hover {
-	text-decoration: none
+	text-decoration: none;
 }
 
-.container:first-child {
-	min-height: 100%;
-	overflow: auto;
+.container {
+	max-width: 960px;
+
+	&:first-child {
+		min-height: 100%;
+		overflow: auto;
+	}
 }
 
 main {
@@ -35,34 +39,41 @@ h3 {
 	padding: 0;
 }
 
-#extensions article {
-	clear: both;
-	padding: 10px;
+#extensions {
+	position: relative;
 
-	&:not(:last-child) {
-		margin-bottom: 3em;
+	#searchform {
+		width: 250px;
+		float: right;
 	}
 
-	.icon {
-		float: left;
-		width: 90px;
-		margin-right: 2em;
-	}
+	article {
+		clear: both;
+		padding: 10px;
+			margin-top: 3em;
 
-	.preview {
-		float: left;
-		width: 175px;
-		margin-right: 1.5em;
-	}
-
-	.details {
-		line-height: 1;
-		margin: 10px 0 15px 0;
-		display: inline-block;
-
-		& > p > strong {
-			display: inline-block;
+		.icon {
+			float: left;
 			width: 90px;
+			margin-right: 2em;
+		}
+
+		.preview {
+			float: left;
+			width: 175px;
+			margin-right: 2em;
+			margin-bottom: 2em;
+		}
+
+		.details {
+			line-height: 1;
+			margin: 10px 0 15px 0;
+			display: inline-block;
+
+			& > p > strong {
+				display: inline-block;
+				width: 90px;
+			}
 		}
 	}
 }

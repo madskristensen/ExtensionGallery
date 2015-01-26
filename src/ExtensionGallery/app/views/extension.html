@@ -1,6 +1,6 @@
 ﻿<div id="extensions">
 	<div ng-model="package" ng-show="package">
-		<h1 class="page-header">{{package.Name}} - {{package.Version}}</h1>
+		<h1 class="page-header">{{package.Name}}</h1>
 
 		<article>
 			<img class="preview" ng-src="{{package.Preview}}" alt="{{package.Name}}" />
@@ -9,6 +9,7 @@
 				<p><strong>Author:</strong> <a ng-href="#/author/{{package.Author | lowercase }}">{{package.Author}}</a></p>
 				<p><strong>Supports:</strong> Visual Studio <span ng-repeat="version in package.SupportedVersions">{{version + '&nbsp;'}}</span></p>
 				<p><strong>Tags:</strong> {{package.Tags}}</p>
+				<p><strong>Version:</strong> {{package.Version}}</p>
 				<p><strong>Updated:</strong> <time>{{package.DatePublished | date:'MMM d. yyyy'}}</time></p>
 			</div>
 			<br />
