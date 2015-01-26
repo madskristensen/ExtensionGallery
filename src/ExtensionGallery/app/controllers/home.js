@@ -12,7 +12,7 @@ galleryApp.controller('homeController', ['$scope', 'dataService', function ($sco
 		return package.Name.toUpperCase().indexOf(q) != -1 ||
 			   package.Description.toUpperCase().indexOf(q) != -1 ||
 			   package.Author.toUpperCase().indexOf(q) != -1 ||
-			   package.Tags.toUpperCase().indexOf(q) != -1;
+			   (package.Tags && package.Tags.toUpperCase().indexOf(q) != -1);
 	};
 
 	dataService.getAllExtensions().success(function (data) {
