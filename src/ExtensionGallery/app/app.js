@@ -12,6 +12,11 @@
                 controller: 'homeController',
                 templateUrl: 'app/views/home.html'
             })
+			.when('/author/:name',
+            {
+            	controller: 'authorController',
+            	templateUrl: 'app/views/home.html'
+            })
             .when('/extension/:id/',
             {
                 controller: 'extensionController',

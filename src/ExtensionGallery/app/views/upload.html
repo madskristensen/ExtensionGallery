@@ -4,9 +4,12 @@
     iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
 </p>
 
-<form id="upload" ng-hide="form.$submitted" ng-submit="upload()">
+<form id="upload" ng-hide="form.$submitted">
     <input type="file" id="uploadfile" placeholder="URI to VSIX file" required />
-    <input type="submit" class="btn btn-primary" value="Upload" />
+
+    <a class="btn-sm btn-primary" ng-click="upload()">
+		<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Upload
+	</a>
 
     <p class="has-error" ng-show="upload.url.$invalid || error">{{error}}</p>
 </form>

@@ -2,7 +2,7 @@
 <html lang="en" ng-app="galleryApp">
 <head>
     <meta charset="utf-8" />
-    <title>Visual Studio Gallery</title>
+    <title>Visual Studio Extension Gallery</title>
     <link href="/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <!-- build:css /css/site.css -->
     <link href="/css/site.css" rel="stylesheet" />
@@ -22,7 +22,11 @@
 							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Feed
 						</a>
 					</li>
-					<li><a class="pull-right" href="#upload">Upload new extension</a></li>
+					<li>
+						<a class="pull-right" href="#upload">
+							<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Upload new extension
+						</a>
+					</li>
 				</ul>
             </nav>
         </div>
@@ -46,6 +50,7 @@
     <script src="/controllers/extension.js"></script>
     <script src="/controllers/upload.js"></script>
     <script src="/views/templates.js"></script>
+	<script src="controllers/author.js"></script>
     <!-- endbuild -->
 </body>
 </html>

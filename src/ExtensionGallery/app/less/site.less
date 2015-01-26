@@ -8,6 +8,7 @@ header {
 
     a {
         color: black;
+		cursor: pointer!important;
 
         &:hover {
             text-decoration: none;
@@ -27,12 +28,8 @@ h3 {
 
 #extensions article {
     clear: both;
-    margin-bottom: 4em;
+    margin-bottom: 2em;
 	padding: 10px;
-
-	&:hover{
-		background: #f1f1f1;
-	}
 
     .icon {
         float: left;
@@ -45,7 +42,7 @@ h3 {
         float: left;
         width: 175px;
         margin-right: 1.5em;
-        margin-bottom: 3em;
+        /*margin-bottom: 2em;*/
     }
 
     .details {
@@ -66,8 +63,11 @@ h3 {
         width: 500px;
     }
 
-	input[type=submit] {
+	a[ng-click] {
         margin-top: 1em;
+		display: inline-block;
+		cursor	: pointer;
+		text-decoration: none;
     }
 
     .has-error {

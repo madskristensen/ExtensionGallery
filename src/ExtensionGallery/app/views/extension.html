@@ -1,12 +1,12 @@
 ﻿<div id="extensions">
-	<div ng-model="package">
+	<div ng-model="package" ng-show="package">
 		<h1 class="page-header">{{package.Name}} - {{package.Version}}</h1>
 
 		<article>
 			<img class="preview" ng-src="{{package.Preview}}" alt="{{package.Name}}" />
 			<p>{{package.Description}}</p>
 			<div class="details">
-				<p><strong>Author:</strong> {{package.Author}}</p>
+				<p><strong>Author:</strong> <a ng-href="#/author/{{package.Author | lowercase }}">{{package.Author}}</a></p>
 				<p><strong>Supports:</strong> Visual Studio <span ng-repeat="version in package.SupportedVersions">{{version + '&nbsp;'}}</span></p>
 				<p><strong>Tags:</strong> {{package.Tags}}</p>
 				<p><strong>Updated:</strong> <time>{{package.DatePublished | date:'MMM d. yyyy'}}</time></p>
@@ -15,11 +15,12 @@
 			<a class="btn-sm btn-primary" ng-href="{{package.DownloadUrl}}">
 				<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Download
 			</a>
-			<a href="/home/feed/{{package.ID}}" class="btn-sm btn-success">
+			<a class="btn-sm btn-success" ng-href="/home/feed/{{package.ID}}">
 				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Feed
 			</a>
 		</article>
 
+		<br />
 		<div ng-show="package.License">
 			<h2>License</h2>
 			<pre>{{package.License}}</pre>

@@ -41,7 +41,6 @@ namespace ExtensionGallery2.Controllers
 			}
 		}
 
-		[Produces("text/xml")]
 		public IActionResult Feed(string id)
 		{
 			Response.ContentType = "text/xml";
