@@ -80,7 +80,7 @@ module.exports = function (grunt) {
 
         watch: {
             html: {
-                files: ["<%= project.app %>/**/*.html"],
+                files: ["<%= project.app %>/index.html", "<%= project.app %>/views/*.html"],
                 tasks: ["default"]
             },
             js: {
@@ -88,7 +88,7 @@ module.exports = function (grunt) {
                 tasks: ["default"]
             },
             less: {
-                files: ["<%= project.app %>/less/**/*.less"],
+                files: ["<%= project.app %>/less/*.less"],
                 tasks: ["default"]
             },
             bower: {
