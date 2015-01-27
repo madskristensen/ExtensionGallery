@@ -1,9 +1,9 @@
 ﻿
-galleryApp.controller('homeController', ['$scope', 'dataService', function ($scope, dataService) {
+galleryApp.controller('homeController', ['$scope', '$rootScope', 'dataService', function ($scope, $rootScope, dataService) {
 
-	$scope.headline = "Nightly builds of popular extensions";
+	$rootScope.pageTitle = "Nightly builds of popular extensions";
+
 	$scope.feed = "/feed/";
-
 	$scope.query = '';
 
 	$scope.packageSearch = function (package) {

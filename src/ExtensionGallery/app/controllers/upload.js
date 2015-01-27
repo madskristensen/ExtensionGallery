@@ -1,5 +1,7 @@
 ﻿
-galleryApp.controller('uploadController', ['$scope', '$location', 'dataService', function ($scope, $location, dataService) {
+galleryApp.controller('uploadController', ['$scope', '$rootScope', '$location', 'dataService', function ($scope, $rootScope, $location, dataService) {
+
+	$rootScope.pageTitle = "Upload an extension";
 
 	$scope.error = "";
 	$scope.repo = "";

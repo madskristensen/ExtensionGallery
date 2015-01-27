@@ -7,13 +7,13 @@
 		package.DownloadUrl = "/extensions/" + package.ID + "/extension.vsix";
 
 		if (package.Icon) {
-			package.Icon = '/extensions/' + package.ID + '/preview.png';
+			package.Icon = '/extensions/' + package.ID + '/icon.png?' + package.Version;
 		} else {
 			package.Icon = constants.DEFAULT_ICON_IMAGE;
 		}
 
 		if (package.Preview) {
-			package.Preview = '/extensions/' + package.ID + '/preview.png';
+			package.Preview = '/extensions/' + package.ID + '/preview.png?' + package.Version;
 		} else {
 			package.Preview = constants.DEFAULT_PREVIEW_IMAGE;
 		}

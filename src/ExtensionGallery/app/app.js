@@ -14,6 +14,7 @@
     	$routeProvider
             .when('/',
             {
+            	title: 'Visual Studio Extension Gallery',
             	controller: 'homeController',
             	templateUrl: 'app/views/home.html'
             })

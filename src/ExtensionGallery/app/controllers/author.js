@@ -1,10 +1,11 @@
 ﻿
-galleryApp.controller('authorController', ['$scope', '$route', 'dataService', function ($scope, $route, dataService) {
+galleryApp.controller('authorController', ['$scope', '$rootScope', '$route', 'dataService', function ($scope, $rootScope, $route, dataService) {
 
-	$scope.headline = "Extensions by " + toTitleCase($route.current.params.name);
+	$rootScope.pageTitle = "Extensions by " + toTitleCase($route.current.params.name);
+
 	$scope.feed = "/feed/author/" + $route.current.params.name + "/";
-
 	$scope.query = '';
+
 
 	$scope.packageSearch = function (package) {
 		var q = $scope.query.toUpperCase();

@@ -1,5 +1,5 @@
 ﻿
-galleryApp.controller('extensionController', ['$scope', '$location', '$route', 'dataService', function ($scope, $location, $route, dataService) {
+galleryApp.controller('extensionController', ['$scope', '$rootScope', '$location', '$route', 'dataService', function ($scope, $rootScope, $location, $route, dataService) {
 
 	var id = $route.current.params.id;
 	$scope.older = [];
@@ -11,6 +11,8 @@ galleryApp.controller('extensionController', ['$scope', '$location', '$route', '
 		}
 
 		var package = dataService.normalizePackage(data);
+
+		$rootScope.pageTitle = data.Title;
 
 		$scope.package = data;
 	});
