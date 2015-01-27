@@ -10,6 +10,10 @@ a.btn:hover,
 a.btn-sm:hover {
   text-decoration: none;
 }
+.navbar-brand {
+  background: url(/img/logo.png) no-repeat center left;
+  padding-left: 30px;
+}
 .container {
   max-width: 960px;
 }
