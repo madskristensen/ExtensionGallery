@@ -24,7 +24,7 @@ namespace ExtensionGallery.Controllers
 			Response.ContentType = "text/xml";
 			string baseUrl = Request.Scheme + "://" + Request.Host;
 
-			Package[] packages = _helper.GetAllPackages().ToArray();
+			Package[] packages = _helper.PackageCache.OrderByDescending(p => p.DatePublished).ToArray();
 			return Content(_feed.GetFeed(baseUrl, packages));
 		}
 
@@ -49,7 +49,10 @@ namespace ExtensionGallery.Controllers
 
 			if (!string.IsNullOrEmpty(id))
 			{
-				var packages = _helper.GetAllPackages().Where(p => p.Author.Equals(id, System.StringComparison.OrdinalIgnoreCase));
+				var packages = _helper.PackageCache
+									  .Where(p => p.Author.Equals(id, System.StringComparison.OrdinalIgnoreCase))
+									  .OrderByDescending(p => p.DatePublished);
+
 				return Content(_feed.GetFeed(baseUrl, packages.ToArray()));
 			}
 

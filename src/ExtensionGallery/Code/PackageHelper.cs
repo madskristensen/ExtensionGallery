@@ -14,7 +14,7 @@ namespace ExtensionGallery.Code
 	{
 		private string _webroot;
 		private string _extensionRoot;
-		private static List<Package> _cache;
+		public static List<Package> _cache;
 
 		public PackageHelper(string webroot)
 		{
@@ -22,35 +22,40 @@ namespace ExtensionGallery.Code
 			_extensionRoot = Path.Combine(webroot, "extensions");
 		}
 
-		public IEnumerable<Package> GetAllPackages()
+		public List<Package> PackageCache
 		{
-			if (_cache == null)
+			get
 			{
-				List<Package> packages = new List<Package>();
+				if (_cache == null)
+					_cache = GetAllPackages();
 
-				foreach (string extension in Directory.EnumerateDirectories(_extensionRoot))
+				return _cache;
+			}
+		}
+
+		private List<Package> GetAllPackages()
+		{
+			List<Package> packages = new List<Package>();
+
+			foreach (string extension in Directory.EnumerateDirectories(_extensionRoot))
+			{
+				string json = Path.Combine(extension, "extension.json");
+				if (File.Exists(json))
 				{
-					string json = Path.Combine(extension, "extension.json");
-					if (File.Exists(json))
-					{
-						string content = File.ReadAllText(json);
-						Package package = JsonConvert.DeserializeObject(content, typeof(Package)) as Package;
-						packages.Add(package);
-					}
+					string content = File.ReadAllText(json);
+					Package package = JsonConvert.DeserializeObject(content, typeof(Package)) as Package;
+					packages.Add(package);
 				}
-
-				_cache = new List<Package>();
-				_cache.AddRange(packages);
 			}
 
-			return _cache.OrderByDescending(p => p.DatePublished);
+			return packages.OrderByDescending(p => p.DatePublished).ToList();
 		}
 
 		public Package GetPackage(string id)
 		{
-			if (_cache != null && _cache.Any(p => p.ID == id))
+			if (PackageCache.Any(p => p.ID == id))
 			{
-				return _cache.SingleOrDefault(p => p.ID == id);
+				return PackageCache.SingleOrDefault(p => p.ID == id);
 			}
 
 			string folder = Path.Combine(_extensionRoot, id);
@@ -86,6 +91,9 @@ namespace ExtensionGallery.Code
 				VsixManifestParser parser = new VsixManifestParser();
 				Package package = parser.CreateFromManifest(tempFolder, repo, issuetracker);
 
+				if (PackageCache.Any(p => p.ID == package.ID && new Version(p.Version) > new Version(package.Version)))
+					throw new ArgumentException("The VSIX version (" + package.Version + ") must be equal or higher than the existing VSIX");
+
 				string vsixFolder = Path.Combine(_extensionRoot, package.ID);
 
 				SavePackage(tempFolder, package, vsixFolder);
@@ -106,7 +114,7 @@ namespace ExtensionGallery.Code
 				Directory.Delete(vsixFolder, true);
 
 			Directory.CreateDirectory(vsixFolder);
-			
+
 			string icon = Path.Combine(tempFolder, package.Icon ?? string.Empty);
 			if (File.Exists(icon))
 				File.Copy(icon, Path.Combine(vsixFolder, "icon.png"), true);
@@ -119,16 +127,14 @@ namespace ExtensionGallery.Code
 
 			File.WriteAllText(Path.Combine(vsixFolder, "extension.json"), json, Encoding.UTF8);
 
-			if (_cache == null)
-				return;
+			Package existing = PackageCache.FirstOrDefault(p => p.ID == package.ID);
 
-			Package existing = _cache.FirstOrDefault(p => p.ID == package.ID);
-			if (_cache.Contains(existing))
+			if (PackageCache.Contains(existing))
 			{
-				_cache.Remove(existing);
+				PackageCache.Remove(existing);
 			}
 
-			_cache.Add(package);
+			PackageCache.Add(package);
 		}
 	}
 }

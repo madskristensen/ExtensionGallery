@@ -22,8 +22,8 @@ namespace ExtensionGallery2.Controllers
 
 		public IActionResult Index()
 		{
-				var packages = _helper.GetAllPackages();
-				return Json(packages);
+			var packages = _helper.PackageCache.OrderByDescending(p => p.DatePublished);
+			return Json(packages);
 		}
 
 		public IActionResult Get(string id)
@@ -35,10 +35,19 @@ namespace ExtensionGallery2.Controllers
 		[HttpPost]
 		public async Task<IActionResult> UploadFile([FromQuery]string repo, string issuetracker)
 		{
-			Stream bodyStream = Context.Request.Body;
-			Package package = await _helper.ProcessVsix(bodyStream, repo, issuetracker);
+			try
+			{
+				Stream bodyStream = Context.Request.Body;
+				Package package = await _helper.ProcessVsix(bodyStream, repo, issuetracker);
 
-			return Json(package);
+				return Json(package);
+			}
+			catch (Exception ex)
+			{
+				Response.StatusCode = 500;
+				Response.Headers["x-error"] = ex.Message;
+				return Content(ex.Message);
+			}
 		}
 	}
 }

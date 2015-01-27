@@ -10,7 +10,6 @@ galleryApp.controller('uploadController', ['$scope', '$location', 'dataService',
 		$scope.issuetracker = localStorage["upload.issuetracker"];
 	}
 
-
 	$scope.upload = function () {
 		var fileInput = document.getElementById("uploadfile");
 		var reader = new FileReader();
@@ -21,22 +20,16 @@ galleryApp.controller('uploadController', ['$scope', '$location', 'dataService',
 			    	$location.path('/extension/' + data.ID);
 			    })
 			    .error(function (data, status, header, config) {
-			    	switch (status) {
-			    		case 500:
-			    			$scope.error = "A problem occured reading your VSIX. Please make sure your VSIX is valid";
-			    			break;
-			    		default:
-			    			$scope.error = "Unknown error occured. Please make sure your VSIX is valid.";
-			    	}
+					$scope.error = data;
 			    });
 		};
 
 		reader.readAsArrayBuffer(fileInput.files[0]);
 
-		if (localStorage) {
+		if (localStorage && localStorage["upload.repo"])
 			localStorage["upload.repo"] = $scope.repo;
+		if (localStorage && localStorage["upload.issuetracker"])
 			localStorage["upload.issuetracker"] = $scope.issuetracker;
-		}
 	};
 
 }]);
