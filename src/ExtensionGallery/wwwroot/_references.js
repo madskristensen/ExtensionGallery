@@ -13,4 +13,4 @@
 /// <reference path="../.tmp/concat/js/optimized.js" />
 /// <reference path="lib/angular-resource/angular-resource.js" />
 /// <reference path="../app/controllers/author.js" />
-/// <reference path="js/optimized.1ee628c4.js" />
+/// <reference path="js/optimized.a22d8f7c.js" />
