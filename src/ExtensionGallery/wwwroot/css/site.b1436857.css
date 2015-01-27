@@ -79,6 +79,7 @@ h3 {
 }
 #upload {
   max-width: 450px;
+  padding-left: 5px;
 }
 #upload input[type=file] {
   width: 100%;

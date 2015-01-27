@@ -12,7 +12,7 @@ galleryApp.controller('extensionController', ['$scope', '$rootScope', '$location
 
 		var package = dataService.normalizePackage(data);
 
-		$rootScope.pageTitle = data.Title;
+		$rootScope.pageTitle = data.Name;
 
 		$scope.package = data;
 	});

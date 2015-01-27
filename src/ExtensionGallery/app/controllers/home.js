@@ -1,7 +1,7 @@
 ﻿
 galleryApp.controller('homeController', ['$scope', '$rootScope', 'dataService', function ($scope, $rootScope, dataService) {
 
-	$rootScope.pageTitle = "Nightly builds of popular extensions";
+	$rootScope.pageTitle = "Visual Studio Extension Gallery";
 
 	$scope.feed = "/feed/";
 	$scope.query = '';
