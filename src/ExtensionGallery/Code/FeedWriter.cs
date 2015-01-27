@@ -22,7 +22,6 @@ namespace ExtensionGallery.Code
 				writer.WriteElementString("title", "VSIX Gallery");
 				writer.WriteElementString("id", "5a7c2525-ddd8-4c44-b2e3-f57ba01a0d81");
 				writer.WriteElementString("updated", DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ssZ"));
-				writer.WriteElementString("author", "Mads Kristensen");
 				writer.WriteElementString("subtitle", "Add this feed to Visual Studio's extension manager from Tools -> Options -> Environment -> Extensions and Updates");
 
 				writer.WriteStartElement("link");
