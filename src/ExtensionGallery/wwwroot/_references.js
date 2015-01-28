@@ -14,5 +14,3 @@
 /// <reference path="lib/angular-resource/angular-resource.js" />
 /// <reference path="../app/controllers/author.js" />
 /// <reference path="js/optimized.df02f216.js" />
-/// <reference path="temp/7b404147-c765-43e0-9b5b-65a6bd745e6a/NPM/Resources/gruntfile.js" />
-/// <reference path="temp/7b404147-c765-43e0-9b5b-65a6bd745e6a/Resources/Scripts/Modern.js" />

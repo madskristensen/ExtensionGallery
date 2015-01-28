@@ -7,8 +7,11 @@
     "angular-route": "1.3.8"
   },
   "exportsOverride": {
-    "angular": {
-      "": "angular.{js,min.js,min.map}"
+	"angular": {
+		"": "angular.{js,min.js,min.map}"
+	},
+	"angular-route": {
+      "": "angular-route.{js,min.js,min.map}"
     },
     "bootstrap": {
       "js": "dist/js/*.*",

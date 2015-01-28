@@ -1,5 +1,4 @@
-/// <binding ProjectOpened='watch' />
-
+/// <binding AfterBuild='default' />
 module.exports = function (grunt) {
 
     require("load-grunt-tasks")(grunt);
