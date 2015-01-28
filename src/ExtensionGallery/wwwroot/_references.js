@@ -10,7 +10,5 @@
 /// <reference path="../app/controllers/home.js" />
 /// <reference path="../app/controllers/upload.js" />
 /// <reference path="../app/views/templates.js" />
-/// <reference path="../.tmp/concat/js/optimized.js" />
-/// <reference path="lib/angular-resource/angular-resource.js" />
 /// <reference path="../app/controllers/author.js" />
 /// <reference path="js/optimized.df02f216.js" />

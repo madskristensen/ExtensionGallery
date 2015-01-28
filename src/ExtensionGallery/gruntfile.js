@@ -24,7 +24,8 @@ module.exports = function (grunt) {
         useminPrepare: {
             html: '<%= project.app %>/index.html',
             options: {
-                dest: '<%= project.dist %>',
+            	dest: '<%= project.dist %>',
+				staging: 'obj'
             }
         },
 
