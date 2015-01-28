@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using System.Xml;
-using ExtensionGallery.Models;
 
 namespace ExtensionGallery.Code
 {

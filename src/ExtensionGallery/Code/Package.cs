@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ExtensionGallery.Models
+namespace ExtensionGallery.Code
 {
 	public class Package
     {

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
-using ExtensionGallery.Models;
 
 namespace ExtensionGallery.Code
 {

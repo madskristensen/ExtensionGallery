@@ -1,11 +1,10 @@
-﻿using System.Linq;
-using ExtensionGallery.Models;
-using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Mvc;
+﻿using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using ExtensionGallery.Code;
-using System;
+using Microsoft.AspNet.Hosting;
+using Microsoft.AspNet.Mvc;
 
 namespace ExtensionGallery2.Controllers
 {
