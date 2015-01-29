@@ -19,20 +19,31 @@ namespace ExtensionGallery.Controllers
 		public IActionResult Index()
 		{
 			Response.ContentType = "text/xml";
-			string baseUrl = Request.Scheme + "://" + Request.Host;
-
 			Package[] packages = _helper.PackageCache.OrderByDescending(p => p.DatePublished).ToArray();
+
+			if (this.MatchesIfModifiedSince(packages))
+			{
+				return new EmptyResult();
+			}
+
+			string baseUrl = Request.Scheme + "://" + Request.Host;
 			return Content(_feed.GetFeed(baseUrl, packages));
 		}
 
 		public IActionResult Extension(string id)
 		{
 			Response.ContentType = "text/xml";
-			string baseUrl = Request.Scheme + "://" + Request.Host;
 
 			if (!string.IsNullOrEmpty(id))
 			{
 				Package package = _helper.GetPackage(id);
+
+				if (this.MatchesIfModifiedSince(package))
+				{
+					return new EmptyResult();
+				}
+
+				string baseUrl = Request.Scheme + "://" + Request.Host;
 				return Content(_feed.GetFeed(baseUrl, package));
 			}
 
@@ -49,6 +60,11 @@ namespace ExtensionGallery.Controllers
 				var packages = _helper.PackageCache
 									  .Where(p => p.Author.Equals(id, System.StringComparison.OrdinalIgnoreCase))
 									  .OrderByDescending(p => p.DatePublished);
+
+				if (this.MatchesIfModifiedSince(packages))
+				{
+					return new EmptyResult();
+				}
 
 				return Content(_feed.GetFeed(baseUrl, packages.ToArray()));
 			}

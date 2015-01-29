@@ -11,7 +11,7 @@
 		"": "angular.{js,min.js,min.map}"
 	},
 	"angular-route": {
-      "": "angular-route.{js,min.js,min.map}"
+      "": "angular-route.{js,min.js,*.map}"
     },
     "bootstrap": {
       "js": "dist/js/*.*",

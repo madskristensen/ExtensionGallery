@@ -6,7 +6,7 @@ using ExtensionGallery.Code;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Mvc;
 
-namespace ExtensionGallery2.Controllers
+namespace ExtensionGallery.Controllers
 {
 	public class ExtensionController : Controller
 	{
@@ -22,12 +22,24 @@ namespace ExtensionGallery2.Controllers
 		public IActionResult Index()
 		{
 			var packages = _helper.PackageCache.OrderByDescending(p => p.DatePublished);
+
+			if (this.MatchesIfModifiedSince(packages))
+			{
+				return new EmptyResult();
+			}
+
 			return Json(packages);
 		}
 
 		public IActionResult Get(string id)
 		{
 			var package = _helper.GetPackage(id);
+
+			if (this.MatchesIfModifiedSince(package))
+			{
+				return new EmptyResult();
+			}
+
 			return Json(package);
 		}
 
