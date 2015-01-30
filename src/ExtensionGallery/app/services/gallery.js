@@ -1,19 +1,21 @@
 ﻿galleryApp.service("dataService", ["$http", function ($http) {
 
-	var urlBase = "/extension/";
+	var apiBase = "/api/",
+		extBase = "/extensions/",
+		cache = [];
 
-	this.normalizePackage = function (package) {
+	function normalizePackage(package) {
 
-		package.DownloadUrl = "/extensions/" + package.ID + "/extension.vsix";
+		package.DownloadUrl = extBase + package.ID + "/extension.vsix";
 
 		if (package.Icon) {
-			package.Icon = '/extensions/' + package.ID + '/icon.png?' + package.Version;
+			package.Icon = extBase + package.ID + '/' + package.Icon;
 		} else {
 			package.Icon = constants.DEFAULT_ICON_IMAGE;
 		}
 
 		if (package.Preview) {
-			package.Preview = '/extensions/' + package.ID + '/preview.png?' + package.Version;
+			package.Preview = extBase + package.ID + '/' + package.Preview;
 		} else {
 			package.Preview = constants.DEFAULT_PREVIEW_IMAGE;
 		}
@@ -30,16 +32,54 @@
 		return package;
 	}
 
-	this.getAllExtensions = function () {
-		return $http.get(urlBase);
+	this.getAllExtensions = function (callback) {
+
+		if (cache.length > 0)
+			return callback(cache);
+
+		$http.get(apiBase + "get/")
+			.success(function (data) {
+
+				for (var i = 0; i < data.length; i++) {
+					normalizePackage(data[i]);
+				}
+
+				cache = data;
+				callback(data);
+			})
+		.error(function (response) {
+			callback({ error: true });
+		});
 	}
 
-	this.getExtension = function (id) {
-		return $http.get(urlBase + "get/" + id);
+	this.getExtension = function (id, callback) {
+		var package = cache.filter(function (p) { return p.ID === id });
+
+		if (package.length > 0)
+			return callback(package[0]);
+
+		$http.get(apiBase + "get/" + id).success(function (data) {
+
+			callback(normalizePackage(data));
+		});
 	}
 
-	this.upload = function (bytes, query) {
-		return $http.post(urlBase + "uploadfile" + query, new Blob([bytes], {}));
+	this.upload = function (bytes, query, callback) {
+		$http.post(apiBase + "upload" + query, new Blob([bytes], {})).success(function (data) {
+
+			for (var i = 0; i < cache.length; i++) {
+				var package = cache[i];
+
+				if (package.ID == data.ID) {
+					cache.splice(i, 1);
+					break;
+				}
+			}
+
+			cache.splice(0, 0, normalizePackage(data));
+
+			callback(data);
+		});
 	}
 
 }]);

@@ -1,4 +1,4 @@
-/// <binding AfterBuild='default' ProjectOpened='watch' />
+/// <binding AfterBuild='build' ProjectOpened='watch' />
 module.exports = function (grunt) {
 
     require("load-grunt-tasks")(grunt);
@@ -81,15 +81,15 @@ module.exports = function (grunt) {
         watch: {
             html: {
                 files: ["<%= project.app %>/index.html", "<%= project.app %>/views/*.html"],
-                tasks: ["default"]
+                tasks: ["build"]
             },
             js: {
                 files: ["<%= project.app %>/**/*.js", "!<%= project.app %>/views/templates.js"],
-                tasks: ["default"]
+                tasks: ["build"]
             },
             less: {
                 files: ["<%= project.app %>/less/*.less"],
-                tasks: ["default"]
+                tasks: ["build"]
             },
             bower: {
                 files: ['bower.json'],
@@ -101,7 +101,9 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask("default", [
+    grunt.registerTask("default", ["bower:install", "build"]);
+
+    grunt.registerTask("build", [
         "clean",
         "less",
         "useminPrepare",

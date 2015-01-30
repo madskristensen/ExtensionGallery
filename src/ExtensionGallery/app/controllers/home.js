@@ -15,12 +15,7 @@ galleryApp.controller('homeController', ['$scope', '$rootScope', 'dataService', 
 			   (package.Tags && package.Tags.toUpperCase().indexOf(q) != -1);
 	};
 
-	dataService.getAllExtensions().success(function (data) {
-
-		for (var i = 0; i < data.length; i++) {
-			dataService.normalizePackage(data[i]);
-		}
-
+	dataService.getAllExtensions(function (data) {
 		$scope.packages = data;
 	});
 

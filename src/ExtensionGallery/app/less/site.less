@@ -14,8 +14,8 @@ a.btn:hover, a.btn-sm:hover {
 }
 
 .navbar-brand {
-	background: url(/img/logo.png) no-repeat center left;
-	padding-left: 30px;
+	background: url(/img/logo.png) no-repeat 14px center;
+	padding-left: 40px;
 }
 
 .container {
@@ -69,7 +69,7 @@ h3 {
 		.preview {
 			float: left;
 			width: 175px;
-			margin-right: 2em;
+			/*margin-right: 2em;*/
 			margin-bottom: 2em;
 		}
 
@@ -81,7 +81,11 @@ h3 {
 				margin: 10px 0 15px 0;
 				display: inline-block;
 
-				& > p > strong {
+				p:first-child {
+					margin-bottom: 2em;
+				}
+
+				> p > strong {
 					display: inline-block;
 					width: 130px;
 				}

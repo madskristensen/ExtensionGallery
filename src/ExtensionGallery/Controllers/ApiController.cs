@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,43 +9,51 @@ using Microsoft.AspNet.Mvc;
 
 namespace ExtensionGallery.Controllers
 {
-	public class ExtensionController : Controller
+	public class ApiController : Controller
 	{
 		IHostingEnvironment _env;
 		PackageHelper _helper;
 
-		public ExtensionController(IHostingEnvironment env)
+		public ApiController(IHostingEnvironment env)
 		{
 			_env = env;
 			_helper = new PackageHelper(env.WebRoot);
 		}
 
-		public IActionResult Index()
+		public IActionResult Html()
 		{
-			var packages = _helper.PackageCache.OrderByDescending(p => p.DatePublished);
-
-			if (this.MatchesIfModifiedSince(packages))
-			{
-				return new EmptyResult();
-			}
-
-			return Json(packages);
+			return File("index.html", "text/html;charset=utf-8");
 		}
 
-		public IActionResult Get(string id)
+		public object Get(string id)
 		{
+			Response.Headers["Cache-Control"] = "no-cache";
+			Response.Headers["Expires"] = DateTime.UtcNow.ToString("r");
+
+			if (string.IsNullOrWhiteSpace(id))
+			{
+				var packages = _helper.PackageCache.OrderByDescending(p => p.DatePublished);
+
+				if (this.IsConditionalGet(packages))
+				{
+					return Enumerable.Empty<Package>();
+				}
+
+				return packages;
+			}
+
 			var package = _helper.GetPackage(id);
 
-			if (this.MatchesIfModifiedSince(package))
+			if (this.IsConditionalGet(package))
 			{
 				return new EmptyResult();
 			}
 
-			return Json(package);
+			return package;
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> UploadFile([FromQuery]string repo, string issuetracker)
+		public async Task<IActionResult> Upload([FromQuery]string repo, string issuetracker)
 		{
 			try
 			{

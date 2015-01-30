@@ -89,6 +89,16 @@ namespace ExtensionGallery
 			app.UseMvc(routes =>
 			{
 				routes.MapRoute(
+					name: "extension",
+					template: "extension/{id}",
+					defaults: new { controller = "Api", action = "Html" });
+
+				routes.MapRoute(
+					name: "author",
+					template: "author/{name}",
+					defaults: new { controller = "Api", action = "Html" });
+
+				routes.MapRoute(
 					name: "default",
 					template: "{controller}/{action}/{id?}",
 					defaults: new { controller = "Home", action = "Index" });

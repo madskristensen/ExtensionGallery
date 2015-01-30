@@ -20,19 +20,11 @@ galleryApp.controller('authorController', ['$scope', '$rootScope', '$route', 'da
 		return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
 	}
 
-    dataService.getAllExtensions().success(function (data) {
+     dataService.getAllExtensions(function (data) {
 
-    	packages = [];
+    	var author = $route.current.params.name.toUpperCase()
 
-    	for (var i = 0; i < data.length; i++) {
-    		var package = data[i];
-
-    		if (package.Author.toUpperCase() === $route.current.params.name.toUpperCase()) {
-    			packages.push(dataService.normalizePackage(package));
-    		}
-        }
-
-        $scope.packages = packages;
+    	$scope.packages = data.filter(function (p) { return p.Author.toUpperCase() === author });
     });
 
 }]);

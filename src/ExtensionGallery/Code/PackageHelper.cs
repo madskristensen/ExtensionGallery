@@ -116,11 +116,17 @@ namespace ExtensionGallery.Code
 
 			string icon = Path.Combine(tempFolder, package.Icon ?? string.Empty);
 			if (File.Exists(icon))
-				File.Copy(icon, Path.Combine(vsixFolder, "icon.png"), true);
+			{
+				File.Copy(icon, Path.Combine(vsixFolder, "icon-" + package.Version + ".png"), true);
+				package.Icon = "icon-" + package.Version + ".png";
+            }
 
 			string preview = Path.Combine(tempFolder, package.Preview ?? string.Empty);
 			if (File.Exists(preview))
-				File.Copy(preview, Path.Combine(vsixFolder, "preview.png"), true);
+			{
+				File.Copy(preview, Path.Combine(vsixFolder, "preview-" + package.Version + ".png"), true);
+				package.Preview = "preview-" + package.Version + ".png";
+			}
 
 			string json = JsonConvert.SerializeObject(package);
 

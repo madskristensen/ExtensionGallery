@@ -11,8 +11,8 @@ a.btn-sm:hover {
   text-decoration: none;
 }
 .navbar-brand {
-  background: url(/img/logo.png) no-repeat center left;
-  padding-left: 30px;
+  background: url(/img/logo.png) no-repeat 14px center;
+  padding-left: 40px;
 }
 .container {
   max-width: 960px;
@@ -57,7 +57,7 @@ h3 {
 #extensions article .preview {
   float: left;
   width: 175px;
-  margin-right: 2em;
+  /*margin-right: 2em;*/
   margin-bottom: 2em;
 }
 #extensions article .properties {
@@ -67,6 +67,9 @@ h3 {
   line-height: 1;
   margin: 10px 0 15px 0;
   display: inline-block;
+}
+#extensions article .properties .details p:first-child {
+  margin-bottom: 2em;
 }
 #extensions article .properties .details > p > strong {
   display: inline-block;

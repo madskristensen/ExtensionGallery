@@ -21,7 +21,7 @@ namespace ExtensionGallery.Controllers
 			Response.ContentType = "text/xml";
 			Package[] packages = _helper.PackageCache.OrderByDescending(p => p.DatePublished).ToArray();
 
-			if (this.MatchesIfModifiedSince(packages))
+			if (this.IsConditionalGet(packages))
 			{
 				return new EmptyResult();
 			}
@@ -38,7 +38,7 @@ namespace ExtensionGallery.Controllers
 			{
 				Package package = _helper.GetPackage(id);
 
-				if (this.MatchesIfModifiedSince(package))
+				if (this.IsConditionalGet(package))
 				{
 					return new EmptyResult();
 				}
@@ -61,7 +61,7 @@ namespace ExtensionGallery.Controllers
 									  .Where(p => p.Author.Equals(id, System.StringComparison.OrdinalIgnoreCase))
 									  .OrderByDescending(p => p.DatePublished);
 
-				if (this.MatchesIfModifiedSince(packages))
+				if (this.IsConditionalGet(packages))
 				{
 					return new EmptyResult();
 				}

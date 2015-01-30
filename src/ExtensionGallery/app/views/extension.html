@@ -6,10 +6,10 @@
 			<img class="preview" data-ng-src="{{package.Preview}}" alt="{{package.Name}}" />
 
 			<div class="properties">
-				<p>{{package.Description}}</p>
 				<div class="details">
-					<p><strong>Author:</strong> <a data-ng-href="#/author/{{package.Author | lowercase | escape }}">{{package.Author}}</a></p>
-					<p><strong>Supports:</strong> Visual Studio <span data-ng-repeat="version in package.SupportedVersions">{{version + '&nbsp;'}}</span></p>
+					<p>{{package.Description}}</p>
+					<p><strong>Author:</strong> <a data-ng-href="/author/{{package.Author | lowercase | escape }}">{{package.Author}}</a></p>
+					<p><strong>Supports:</strong> <span data-ng-repeat="version in package.SupportedVersions">{{version + '&nbsp;'}}</span></p>
 					<p data-ng-show="package.Tags"><strong>Tags:</strong> {{package.Tags}}</p>
 					<p><strong>Version:</strong> {{package.Version}}</p>
 					<p><strong>Updated:</strong> <time datetime="{{package.DatePublished | date:'yyyy-MM-dd'}}">{{package.DatePublished | date:'MMM d. yyyy'}}</time></p>
@@ -44,7 +44,7 @@
 		</article>
 
 		<br />
-		<div data-ng-show="package.License">
+		<div data-ng-show="package.License" class="clearfix">
 			<h2>License</h2>
 			<pre>{{package.License}}</pre>
 		</div>

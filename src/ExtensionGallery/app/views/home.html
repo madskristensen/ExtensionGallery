@@ -19,10 +19,10 @@
 		<img class="icon" data-ng-src="{{package.Icon}}" alt="{{package.Name}}" />
 		<div>
 			<h3>
-				<a data-ng-href="#/extension/{{package.ID}}">{{package.Name}}</a>
+				<a data-ng-href="/extension/{{package.ID}}">{{package.Name}}</a>
 			</h3>
 
-			<a data-ng-href="#/author/{{package.Author | lowercase | escape }}">{{package.Author}}</a>
+			<a data-ng-href="/author/{{package.Author | lowercase | escape }}">{{package.Author}}</a>
 			<p>{{package.Description}}</p>
 
 			<a class="btn-sm btn-success" data-ng-href="{{package.DownloadUrl}}">

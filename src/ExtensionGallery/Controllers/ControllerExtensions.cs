@@ -6,29 +6,38 @@ using Microsoft.AspNet.Mvc;
 
 namespace ExtensionGallery.Controllers
 {
-    public static class ControllerExtensions
-    {
-		public static bool MatchesIfModifiedSince(this Controller controller, IEnumerable<Package> packages)
+	public static class ControllerExtensions
+	{
+		public static bool IsConditionalGet(this Controller controller, IEnumerable<Package> packages)
 		{
 			Package package = packages.FirstOrDefault();
-			return controller.MatchesIfModifiedSince(package);
+			return controller.IsConditionalGet(package);
 		}
 
-		public static bool MatchesIfModifiedSince(this Controller controller, Package package)
+		public static bool IsConditionalGet(this Controller controller, Package package)
 		{
 			if (package == null)
 				return false;
 
 			controller.Response.Headers["Last-Modified"] = package.DatePublished.ToString("r");
+			controller.Response.Headers["ETag"] = "\"" + package.DatePublished.Ticks.ToString() + "\"";
 
-			DateTime lastModified = package.DatePublished;
+			// Test If-None-Match
+			if (controller.Request.Headers["If-None-Match"] == controller.Response.Headers["ETag"])
+			{
+				controller.Response.StatusCode = 304;
+				return true;
+			}
+
+			// Test Is-Modified-Since
+			DateTime lm = package.DatePublished;
 			DateTime ifModifiedSince;
-			lastModified = new DateTime(lastModified.Year, lastModified.Month, lastModified.Day, lastModified.Hour, lastModified.Minute, lastModified.Second);
+			lm = new DateTime(lm.Year, lm.Month, lm.Day, lm.Hour, lm.Minute, lm.Second, DateTimeKind.Utc);
 
 			if (DateTime.TryParse(controller.Request.Headers["If-Modified-Since"], out ifModifiedSince))
 			{
 				controller.Response.StatusCode = 304;
-				return lastModified == ifModifiedSince.ToUniversalTime();
+				return lm == ifModifiedSince;
 			}
 
 			return false;

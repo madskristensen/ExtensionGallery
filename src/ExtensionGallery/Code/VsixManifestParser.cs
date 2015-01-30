@@ -27,7 +27,7 @@ namespace ExtensionGallery.Code
             package.SupportedVersions = GetSupportedVersions(doc);
             package.ReleaseNotesUrl = ParseNode(doc, "ReleaseNotes", false);
             package.GettingStartedUrl = ParseNode(doc, "GettingStartedGuide", false);
-            package.MoreInfoUrl = ParseNode(doc, "MoreInfoUrl", false);
+            package.MoreInfoUrl = ParseNode(doc, "MoreInfo", false);
 			package.Repo = repo;
 			package.IssueTracker = issuetracker;
 

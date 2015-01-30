@@ -4,13 +4,11 @@ galleryApp.controller('extensionController', ['$scope', '$rootScope', '$location
 	var id = $route.current.params.id;
 	$scope.older = [];
 
-	dataService.getExtension(id).success(function (data) {
+	dataService.getExtension(id, function (data) {
 
-		if (data.Error) {
+		if (data.error) {
 			$location.path('/');
 		}
-
-		var package = dataService.normalizePackage(data);
 
 		$rootScope.pageTitle = data.Name;
 
