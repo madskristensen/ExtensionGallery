@@ -19,14 +19,16 @@ namespace ExtensionGallery.Controllers
 			if (package == null)
 				return false;
 
-			controller.Response.Headers["Last-Modified"] = package.DatePublished.ToString("r");
-			controller.Response.Headers["ETag"] = "\"" + package.DatePublished.Ticks.ToString() + "\"";
+			string lastmod = package.DatePublished.ToString("r");
+			string etag = "\"" + package.DatePublished.Ticks.ToString() + "\"";
+
+			controller.Response.Headers["Last-Modified"] = lastmod;
+			controller.Response.Headers["ETag"] = etag;
 
 			// Test If-None-Match
-			if (controller.Request.Headers["If-None-Match"] == controller.Response.Headers["ETag"])
+			if (controller.Request.Headers["If-None-Match"] != etag)
 			{
-				controller.Response.StatusCode = 304;
-				return true;
+				return false;
 			}
 
 			// Test Is-Modified-Since
@@ -34,13 +36,14 @@ namespace ExtensionGallery.Controllers
 			DateTime ifModifiedSince;
 			lm = new DateTime(lm.Year, lm.Month, lm.Day, lm.Hour, lm.Minute, lm.Second, DateTimeKind.Utc);
 
-			if (DateTime.TryParse(controller.Request.Headers["If-Modified-Since"], out ifModifiedSince))
+			if (!DateTime.TryParse(controller.Request.Headers["If-Modified-Since"], out ifModifiedSince) || lm != ifModifiedSince)
 			{
-				controller.Response.StatusCode = 304;
-				return lm == ifModifiedSince;
-			}
+				return false;
+            }
 
-			return false;
+			controller.Response.StatusCode = 304;
+
+			return true;
 		}
 	}
 }

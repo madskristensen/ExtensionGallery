@@ -1,4 +1,4 @@
-/// <binding AfterBuild='build' ProjectOpened='watch' />
+/// <binding AfterBuild='build' Clean='clean' ProjectOpened='watch' />
 module.exports = function (grunt) {
 
     require("load-grunt-tasks")(grunt);
