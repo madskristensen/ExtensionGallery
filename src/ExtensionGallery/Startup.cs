@@ -99,6 +99,11 @@ namespace ExtensionGallery
 					defaults: new { controller = "Api", action = "Html" });
 
 				routes.MapRoute(
+					name: "upload",
+					template: "upload",
+					defaults: new { controller = "Api", action = "Html" });
+
+				routes.MapRoute(
 					name: "default",
 					template: "{controller}/{action}/{id?}",
 					defaults: new { controller = "Home", action = "Index" });

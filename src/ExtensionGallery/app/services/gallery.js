@@ -79,7 +79,10 @@
 			cache.splice(0, 0, normalizePackage(data));
 
 			callback(data);
-		});
+		})
+		.error(function (response) {
+			callback({ error: true });
+		});;
 	}
 
 }]);

@@ -4,10 +4,13 @@ body {
 }
 body {
   padding-top: 60px;
-  font-family: arial;
 }
 a.btn:hover,
-a.btn-sm:hover {
+a.btn:active,
+a.btn:focus,
+a.btn-sm:hover,
+a.btn-sm:active,
+a.btn-sm:focus {
   text-decoration: none;
 }
 .navbar-brand {
@@ -25,6 +28,9 @@ main {
   overflow: auto;
   margin-bottom: 3em;
   padding-bottom: 50px;
+}
+a {
+  color: #2f70a9;
 }
 h2 {
   font-size: 1.6em;
@@ -57,32 +63,34 @@ h3 {
 #extensions article .preview {
   float: left;
   width: 175px;
-  /*margin-right: 2em;*/
   margin-bottom: 2em;
 }
-#extensions article .properties {
-  margin-left: 200px !important;
+#extensions .extension {
+  margin-top: 0;
 }
-#extensions article .properties .details {
-  line-height: 1;
-  margin: 10px 0 15px 0;
-  display: inline-block;
-}
-#extensions article .properties .details p:first-child {
-  margin-bottom: 2em;
-}
-#extensions article .properties .details > p > strong {
-  display: inline-block;
-  width: 130px;
-}
-#extensions article .properties .details ul {
+#extensions .extension ul {
   list-style: none;
   padding: 0;
-  margin: 20px 0;
+  margin: 0 0 1em 0;
 }
-#extensions article .properties .details ul li {
+#extensions .extension ul li {
   display: inline-block;
   margin-right: 1em;
+}
+#extensions .extension .properties {
+  margin-left: 200px !important;
+}
+#extensions .extension .properties .details {
+  line-height: 1;
+  margin: 0 0 15px 0;
+  display: inline-block;
+}
+#extensions .extension .properties .details p:first-child {
+  margin-bottom: 2em;
+}
+#extensions .extension .properties .details > p > strong {
+  display: inline-block;
+  width: 80px;
 }
 #upload {
   max-width: 450px;

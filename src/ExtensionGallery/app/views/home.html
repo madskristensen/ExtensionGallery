@@ -25,11 +25,11 @@
 			<a data-ng-href="/author/{{package.Author | lowercase | escape }}">{{package.Author}}</a>
 			<p>{{package.Description}}</p>
 
-			<a class="btn-sm btn-success" data-ng-href="{{package.DownloadUrl}}">
+			<a class="btn-sm btn-success" href="{{package.DownloadUrl}}" target="_self">
 				<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Download
 			</a>
 
-			<a data-ng-href="/feed/extension/{{package.ID}}" class="btn-sm btn-default">
+			<a class="btn-sm btn-default" href="/feed/extension/{{package.ID}}" target="_self">
 				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Feed
 			</a>
 			<time datetime="{{package.DatePublished | date:'yyyy-MM-dd'}}">{{package.DatePublished | date:'&nbsp;MMM d. yyyy'}}</time>

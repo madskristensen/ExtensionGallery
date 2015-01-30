@@ -6,10 +6,10 @@ html, body {
 
 body {
 	padding-top: 60px;
-	font-family: arial;
 }
 
-a.btn:hover, a.btn-sm:hover {
+a.btn:hover, a.btn:active, a.btn:focus,
+a.btn-sm:hover, a.btn-sm:active, a.btn-sm:focus {
 	text-decoration: none;
 }
 
@@ -31,6 +31,10 @@ main {
 	overflow: auto;
 	margin-bottom: 3em;
 	padding-bottom: @footer-height;
+}
+
+a {
+	color: #2f70a9;
 }
 
 h2 {
@@ -69,8 +73,22 @@ h3 {
 		.preview {
 			float: left;
 			width: 175px;
-			/*margin-right: 2em;*/
 			margin-bottom: 2em;
+		}
+	}
+
+	.extension {
+		margin-top: 0;
+
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0 0 1em 0;
+
+			li {
+				display: inline-block;
+				margin-right: 1em;
+			}
 		}
 
 		.properties {
@@ -78,7 +96,7 @@ h3 {
 
 			.details {
 				line-height: 1;
-				margin: 10px 0 15px 0;
+				margin: 0 0 15px 0;
 				display: inline-block;
 
 				p:first-child {
@@ -87,18 +105,7 @@ h3 {
 
 				> p > strong {
 					display: inline-block;
-					width: 130px;
-				}
-
-				ul {
-					list-style: none;
-					padding: 0;
-					margin: 20px 0;
-
-					li {
-						display: inline-block;
-						margin-right: 1em;
-					}
+					width: 80px;
 				}
 			}
 		}

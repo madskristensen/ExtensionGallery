@@ -17,17 +17,15 @@ galleryApp.controller('uploadController', ['$scope', '$rootScope', '$location', 
 		var reader = new FileReader();
 		reader.onload = function (result) {
 
-			dataService.upload(result.target.result, "?repo=" + encodeURIComponent($scope.repo) + "&issuetracker=" + encodeURIComponent($scope.issuetracker), function (data) {
-				$location.path('/extension/' + data.ID);
+			var query = "?repo=" + encodeURIComponent($scope.repo) + "&issuetracker=" + encodeURIComponent($scope.issuetracker);
+			dataService.upload(result.target.result, query, function (data) {
+
+				if (!data.error)
+					$location.path('/extension/' + data.ID);
+				else
+					$scope.error = data;
 			});
 		};
-		//	    .success(function (data) {
-		//	    	$location.path('/extension/' + data.ID);
-		//	    })
-		//	    .error(function (data, status, header, config) {
-		//			$scope.error = data;
-		//	    });
-		//};
 
 		reader.readAsArrayBuffer(fileInput.files[0]);
 

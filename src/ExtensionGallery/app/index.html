@@ -4,8 +4,11 @@
 	<title data-ng-bind="pageTitle">VSIX Gallery</title>
 	<meta charset="utf-8" />
 	<meta name="description" content="An alternative Visual Studio extension gallery." />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 	<link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 	<link type="application/atom+xml" rel="alternate" title="VSIX Gallery Feed" href="/feed/" />
+
 	<!-- build:css /css/site.css -->
 	<link href="/css/site.css" rel="stylesheet" />
 	<!-- endbuild -->
@@ -15,10 +18,10 @@
 
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<nav class="container" role="navigation">
-			<a class="navbar-brand" ng-href="/">Visual Studio Extension Gallery</a>
+			<a class="navbar-brand" data-ng-href="/">Visual Studio Extension Gallery</a>
 			<ul class="nav navbar-nav pull-right">
 				<li>
-					<a class="pull-right" ng-href="/upload">
+					<a class="pull-right" data-ng-href="/upload">
 						<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Upload
 					</a>
 				</li>
@@ -33,7 +36,7 @@
 	</div>
 
 	<footer class="container" role="contentinfo">
-		Copyright &copy; 2015 <a href="http://madskristensen">Mads Kristensen</a>
+		Copyright &copy; 2015 <a href="http://madskristensen.net">Mads Kristensen</a>
 	</footer>
 
 	<script src="lib/angular/angular.min.js"></script>
