@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,7 +27,6 @@ namespace ExtensionGallery.Controllers
 		public object Get(string id)
 		{
 			Response.Headers["Cache-Control"] = "no-cache";
-			Response.Headers["Expires"] = DateTime.UtcNow.ToString("r");
 
 			if (string.IsNullOrWhiteSpace(id))
 			{
