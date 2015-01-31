@@ -6,7 +6,7 @@
 
 	function normalizePackage(package) {
 
-		package.DownloadUrl = extBase + package.ID + "/extension.vsix";
+		package.DownloadUrl = extBase + package.ID + "/" + package.Name + " v" + package.Version + ".vsix";
 
 		if (package.Icon) {
 			package.Icon = extBase + package.ID + '/' + package.Icon;

@@ -45,6 +45,9 @@ h3 {
 #extensions {
   position: relative;
 }
+#extensions h3 span {
+  font-size: .6em;
+}
 #extensions #searchform {
   width: 250px;
   float: right;
@@ -59,7 +62,6 @@ h3 {
 }
 #extensions article .icon {
   float: left;
-  width: 90px;
 }
 #extensions article .preview {
   float: left;

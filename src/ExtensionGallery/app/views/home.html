@@ -16,10 +16,15 @@
 	</div>
 
 	<article data-ng-repeat="package in packages | filter: packageSearch">
-		<img class="icon" width="90" data-ng-src="{{package.Icon}}" alt="{{package.Name}}" />
+
+		<a class="icon" href="/extension/{{package.ID}}">
+			<img width="90" data-ng-src="{{package.Icon}}" alt="{{package.Name}}" />
+		</a>
+
 		<div>
 			<h3>
 				<a data-ng-href="/extension/{{package.ID}}">{{package.Name}}</a>
+				<span>v{{package.Version}}</span>
 			</h3>
 
 			<a data-ng-href="/author/{{package.Author | lowercase | escape }}">{{package.Author}}</a>
