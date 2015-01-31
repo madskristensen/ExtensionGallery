@@ -68,19 +68,19 @@ namespace ExtensionGallery
 			app.UseErrorPage(ErrorPageOptions.ShowAll);
 
 			// Add static files to the request pipeline.
-			var options = new StaticFileOptions();
-			options.ContentTypeProvider = new CustomContentTypeProvider();
-			options.ServeUnknownFileTypes = true;
-			options.OnPrepareResponse = _ =>
-			{
-				string[] valid = new[] { ".js", ".css", ".ico", ".png", ".gif", ".jpg", ".svg", ".woff", ".woff2", ".ttf", ".eot", ".vsix" };
-				string ext = System.IO.Path.GetExtension(_.File.Name).ToLowerInvariant();
-				if (valid.Contains(ext))
-				{
-					_.Context.Response.Headers.Add("cache-control", new string[] { "max-age=31536000" });
-				}
-			};
-			app.UseStaticFiles(options);
+			//var options = new StaticFileOptions();
+			//options.ContentTypeProvider = new CustomContentTypeProvider();
+			//options.ServeUnknownFileTypes = true;
+			//options.OnPrepareResponse = _ =>
+			//{
+			//	string[] valid = new[] { ".js", ".css", ".ico", ".png", ".gif", ".jpg", ".svg", ".woff", ".woff2", ".ttf", ".eot", ".vsix", ".map" };
+			//	string ext = System.IO.Path.GetExtension(_.File.Name).ToLowerInvariant();
+			//	if (valid.Contains(ext))
+			//	{
+			//		_.Context.Response.Headers["cache-control"] = "public, max-age=31536000";
+			//	}
+			//};
+			//app.UseStaticFiles(options);
 
 			// Add cookie-based authentication to the request pipeline.
 			//app.UseIdentity();
@@ -88,20 +88,20 @@ namespace ExtensionGallery
 			// Add MVC to the request pipeline.
 			app.UseMvc(routes =>
 			{
-				routes.MapRoute(
-					name: "extension",
-					template: "extension/{id}",
-					defaults: new { controller = "Api", action = "Html" });
+				//routes.MapRoute(
+				//	name: "extension",
+				//	template: "extension/{id}",
+				//	defaults: new { controller = "Api", action = "Html" });
 
-				routes.MapRoute(
-					name: "author",
-					template: "author/{name}",
-					defaults: new { controller = "Api", action = "Html" });
+				//routes.MapRoute(
+				//	name: "author",
+				//	template: "author/{name}",
+				//	defaults: new { controller = "Api", action = "Html" });
 
-				routes.MapRoute(
-					name: "upload",
-					template: "upload",
-					defaults: new { controller = "Api", action = "Html" });
+				//routes.MapRoute(
+				//	name: "upload",
+				//	template: "upload",
+				//	defaults: new { controller = "Api", action = "Html" });
 
 				routes.MapRoute(
 					name: "default",

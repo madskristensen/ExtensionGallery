@@ -19,11 +19,6 @@ namespace ExtensionGallery.Controllers
 			_helper = new PackageHelper(env.WebRoot);
 		}
 
-		public IActionResult Html()
-		{
-			return File("index.html", "text/html;charset=utf-8");
-		}
-
 		public object Get(string id)
 		{
 			Response.Headers["Cache-Control"] = "no-cache";

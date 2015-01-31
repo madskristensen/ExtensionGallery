@@ -16,7 +16,7 @@
 	</div>
 
 	<article data-ng-repeat="package in packages | filter: packageSearch">
-		<img class="icon" data-ng-src="{{package.Icon}}" alt="{{package.Name}}" />
+		<img class="icon" width="90" data-ng-src="{{package.Icon}}" alt="{{package.Name}}" />
 		<div>
 			<h3>
 				<a data-ng-href="/extension/{{package.ID}}">{{package.Name}}</a>

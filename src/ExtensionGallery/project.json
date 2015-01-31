@@ -53,16 +53,15 @@
 		"node_modules",
 		"bower_components",
 		"app",
-		"wwwroot/extensions",
+		"**/extensions",
 		"wwwroot/temp",
 		".tmp",
 		"**.kproj",
 		"**.user",
 		"**.vspscc",
-		"*._references.js"
+		"**._references.js"
 	],
 	"scripts": {
-		"postrestore": [ "npm install" ],
-		"prepare": [ "grunt bower:install" ]
+		"postrestore": [ "npm install" ]
 	}
 }
