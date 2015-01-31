@@ -3,7 +3,7 @@
 <head>
 	<title data-ng-bind="pageTitle">Visual Studio Extension Gallery</title>
 	<meta charset="utf-8" />
-	<meta name="description" content="An alternative Visual Studio extension gallery." />
+	<meta name="description" content="An alternative Visual Studio extension gallery for nightly builds." />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 	<link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -33,10 +33,17 @@
 	<meta name="msapplication-TileImage" content="/img/favicon/mstile-144x144.png">
 	<meta name="msapplication-config" content="/img/favicon/browserconfig.xml">
 	<meta name="theme-color" content="#ffffff">
+
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content="@mkristensen" />
+	<meta name="twitter:title" content="Visual Studio Extension Gallery" />
+	<meta name="twitter:description" content="An alternative Visual Studio extension gallery for nightly builds." />
+	<meta name="twitter:image" content="http://vsixgallery.com/img/favicon/apple-touch-icon-120x120.png" />
+	<meta name="twitter:url" content="http://vsixgallery.com" />
 </head>
 <body>
 
-	<div class="navbar navbar-inverse navbar-fixed-top">
+	<header class="navbar navbar-inverse navbar-fixed-top">
 		<nav class="container" role="navigation">
 			<a class="navbar-brand" data-ng-href="/">Visual Studio Extension Gallery</a>
 			<ul class="nav navbar-nav pull-right">
@@ -47,7 +54,7 @@
 				</li>
 			</ul>
 		</nav>
-	</div>
+	</header>
 
 	<div class="container">
 		<main role="main">
