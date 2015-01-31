@@ -27,7 +27,7 @@
 				<span>v{{package.Version}}</span>
 			</h3>
 
-			<a data-ng-href="/author/{{package.Author | lowercase | escape }}">{{package.Author}}</a>
+			<a class="author" data-ng-href="/author/{{package.Author | lowercase | escape }}">{{package.Author}}</a>
 			<p>{{package.Description}}</p>
 
 			<a class="btn-sm btn-success" href="{{package.DownloadUrl}}" target="_self">

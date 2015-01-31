@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
+<head prefix="og: http://ogp.me/ns#">
 	<title data-ng-bind="pageTitle">Visual Studio Extension Gallery</title>
 	<meta charset="utf-8" />
 	<meta name="description" content="An alternative Visual Studio extension gallery for nightly builds." />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	<link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" />
 	<link type="application/atom+xml" rel="alternate" title="VSIX Gallery Feed" href="/feed/" />
 
 	<!-- build:css /css/site.css -->
@@ -40,15 +40,21 @@
 	<meta name="twitter:description" content="An alternative Visual Studio extension gallery for nightly builds." />
 	<meta name="twitter:image" content="http://vsixgallery.com/img/favicon/apple-touch-icon-120x120.png" />
 	<meta name="twitter:url" content="http://vsixgallery.com" />
+
+	<meta property="og:title" content="Visual Studio Extension Gallery" />
+	<meta property="og:description" content="An alternative Visual Studio extension gallery for nightly builds" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://vsixgallery.com" />
+	<meta property="og:image" content="http://vsixgallery.com/img/favicon/apple-touch-icon-120x120.png" />
 </head>
 <body>
 
 	<header class="navbar navbar-inverse navbar-fixed-top">
 		<nav class="container" role="navigation">
-			<a class="navbar-brand" data-ng-href="/">Visual Studio Extension Gallery</a>
+			<a class="navbar-brand" href="/">Visual Studio Extension Gallery</a>
 			<ul class="nav navbar-nav pull-right">
 				<li>
-					<a class="pull-right" data-ng-href="/upload">
+					<a class="pull-right" href="/upload">
 						<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Upload
 					</a>
 				</li>
@@ -66,7 +72,8 @@
 		Copyright &copy; 2015 <a href="http://madskristensen.net">Mads Kristensen</a>
 	</footer>
 
-	<script src="lib/angular/angular.min.js"></script>
+	<!--<script src="lib/angular/angular.min.js"></script>-->
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
 	<script src="lib/angular-route/angular-route.min.js"></script>
 	<!-- build:js js/optimized.js -->
 	<script async src="/app.js"></script>
