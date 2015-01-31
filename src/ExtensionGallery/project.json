@@ -62,6 +62,7 @@
 		"**._references.js"
 	],
 	"scripts": {
-		"postrestore": [ "npm install" ]
+		"postrestore": [ "npm install" ],
+		"prepack": ["grunt build"]
 	}
 }

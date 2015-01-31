@@ -55,7 +55,7 @@ module.exports = function (grunt) {
                     "<%= project.dist %>/css/site.css": ["<%= project.app %>/less/**/*.less"]
                 },
                 options: {
-                    cleancss: true,
+                    compress: true,
                 }
             }
         },
