@@ -54,7 +54,7 @@
 			<a class="navbar-brand" href="/">Visual Studio Extension Gallery</a>
 			<ul class="nav navbar-nav pull-right">
 				<li>
-					<a class="pull-right" href="/upload">
+					<a href="/upload">
 						<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Upload
 					</a>
 				</li>
@@ -63,13 +63,28 @@
 	</header>
 
 	<div class="container">
-		<main role="main">
-			<div data-ng-view></div>
+		<main role="main" class="row">
+			<div data-ng-view class="col col-md-12"></div>
 		</main>
 	</div>
 
-	<footer class="container" role="contentinfo">
-		Copyright &copy; 2015 <a href="http://madskristensen.net">Mads Kristensen</a>
+	<footer class="" role="contentinfo">
+		<div class="container">
+			<ul class="pull-left">
+				<li><h4>Visual Studio</h4></li>
+				<li><a href="/guide/feed">Subscribe to feed</a></li>
+			</ul>
+			<ul class="pull-left">
+				<li><h4>Developers</h4></li>
+				<li><a href="https://github.com/madskristensen/ExtensionGallery">Contribute on GitHub</a></li>
+				<li><a href="https://github.com/madskristensen/ExtensionScripts/blob/master/AppVeyor/vsix.ps1">PowerShell build script</a></li>
+				<li><a href="https://github.com/madskristensen/ExtensionScripts/blob/master/AppVeyor/appveyor.yml">AppVeyor integration</a></li>
+			</ul>
+
+			<p class="copyright pull-right">
+				Copyright &copy; 2015 <a href="http://madskristensen.net">Mads Kristensen</a>
+			</p>
+		</div>
 	</footer>
 
 	<!--<script src="lib/angular/angular.min.js"></script>-->

@@ -1,4 +1,5 @@
-﻿@footer-height: 50px;
+﻿@footer-height: 150px;
+@min-width: 620px;
 
 html, body {
 	height: 100%;
@@ -21,11 +22,8 @@ a.btn-sm:hover, a.btn-sm:active, a.btn-sm:focus {
 
 .container {
 	max-width: 960px;
-
-	&:first-child {
-		min-height: 100%;
-		overflow: auto;
-	}
+	min-height: 100%;
+	overflow: auto;
 }
 
 main {
@@ -52,7 +50,7 @@ h3 {
 #extensions {
 	position: relative;
 
-	h3 span{
+	h3 span {
 		font-size: .6em;
 	}
 
@@ -70,7 +68,7 @@ h3 {
 			margin-left: 120px;
 		}
 
-		.author{
+		.author {
 			margin: 3px 0;
 			display: inline-block;
 		}
@@ -146,19 +144,37 @@ footer {
 	margin-top: -@footer-height;
 	height: @footer-height;
 	clear: both;
-	padding-top: 20px;
-	text-align: center;
 	border-top: 1px solid lightgray;
+	background: #f1f1f1;
+
+	ul {
+		margin-top: 1em;
+		list-style: none;
+		padding: 0 6em 0 0;
+	}
+
+	.copyright {
+		text-align: right;
+		margin-top: @footer-height - 30px;
+		font-size: .9em;
+		color: #808080;
+	}
 }
 
 @media all and (min-width: 400px) and (max-width: 800px) {
-	html, body{
-		min-width: 620px;
+	body {
+		min-width: @min-width;
 	}
-	#extensions article p{
-		-ms-text-size-adjust: 125%;
+
+	#extensions article p {
+		-ms-text-size-adjust: 130%;
 	}
-    @-ms-viewport{
-		width: 620px;
-    }
+
+	.navbar-nav {
+		display: none;
+	}
+
+	@-ms-viewport {
+		width: @min-width;
+	}
 }

@@ -32,6 +32,10 @@
             	controller: 'uploadController',
             	templateUrl: 'app/views/upload.html'
             })
+			.when('/guide/feed/',
+            {
+            	templateUrl: 'app/views/feedguide.html'
+            })
             .otherwise(
             {
             	redirectTo: '/'
