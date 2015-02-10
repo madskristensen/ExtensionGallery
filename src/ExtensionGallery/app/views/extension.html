@@ -10,7 +10,7 @@
 				<div class="details">
 					<p>{{package.Description}}</p>
 					<p><strong>Author:</strong> <a data-ng-href="/author/{{package.Author | lowercase | escape }}">{{package.Author}}</a></p>
-					<p><strong>Supports:</strong> <span data-ng-repeat="version in package.SupportedVersions">{{version + '&nbsp;'}}</span></p>
+					<!--<p><strong>Supports:</strong> <span data-ng-repeat="version in package.SupportedVersions">{{version + '&nbsp;'}}</span></p>-->
 					<p data-ng-show="package.Tags"><strong>Tags:</strong> {{package.Tags}}</p>
 					<p><strong>Version:</strong> {{package.Version}}</p>
 					<p><strong>Updated:</strong> <time datetime="{{package.DatePublished | date:'yyyy-MM-dd'}}">{{package.DatePublished | date:'MMM d. yyyy'}}</time></p>

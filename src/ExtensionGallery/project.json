@@ -53,7 +53,7 @@
 		"node_modules",
 		"bower_components",
 		"app",
-		"**/extensions",
+		"wwwroot/extensions",
 		"wwwroot/temp",
 		".tmp",
 		"**.kproj",
