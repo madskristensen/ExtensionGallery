@@ -1,97 +1,134 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Xml;
 
 namespace ExtensionGallery.Code
 {
 	public class VsixManifestParser
-    {
-        public Package CreateFromManifest(string tempFolder, string repo, string issuetracker)
-        {
-            string xml = File.ReadAllText(Path.Combine(tempFolder, "extension.vsixmanifest"));
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(xml.Replace("xmlns=\"http://schemas.microsoft.com/developer/vsx-schema/2011\"", string.Empty));
+	{
+		public Package CreateFromManifest(string tempFolder, string repo, string issuetracker)
+		{
+			string xml = File.ReadAllText(Path.Combine(tempFolder, "extension.vsixmanifest"));
+			xml = Regex.Replace(xml, "( xmlns(:\\w+)?)=\"([^\"]+)\"", string.Empty);
 
-            Package package = new Package();
+			XmlDocument doc = new XmlDocument();
+			doc.LoadXml(xml);
 
-            package.ID = ParseNode(doc, "Identity", true, "Id");
-            package.Name = ParseNode(doc, "DisplayName", true);
-            package.Description = ParseNode(doc, "Description", true);
-            package.Version = new Version(ParseNode(doc, "Identity", true, "Version")).ToString();
-            package.Author = ParseNode(doc, "Identity", true, "Publisher");
-            package.Icon = ParseNode(doc, "Icon", false);
-            package.Preview = ParseNode(doc, "PreviewImage", false);
-            package.Tags = ParseNode(doc, "Tags", false);
-            package.DatePublished = DateTime.UtcNow;
-            package.SupportedVersions = GetSupportedVersions(doc);
-            package.ReleaseNotesUrl = ParseNode(doc, "ReleaseNotes", false);
-            package.GettingStartedUrl = ParseNode(doc, "GettingStartedGuide", false);
-            package.MoreInfoUrl = ParseNode(doc, "MoreInfo", false);
+			Package package = new Package();
+
+			if (doc.GetElementsByTagName("DisplayName").Count > 0)
+			{
+				Vs2012Format(repo, issuetracker, doc, package);
+			}
+			else
+			{
+				Vs2010Format(repo, issuetracker, doc, package);
+			}
+
+			string license = ParseNode(doc, "License", false);
+			if (!string.IsNullOrEmpty(license))
+			{
+				string path = Path.Combine(tempFolder, license);
+				if (File.Exists(path))
+				{
+					package.License = File.ReadAllText(path);
+				}
+			}
+
+			return package;
+		}
+
+		private void Vs2012Format(string repo, string issuetracker, XmlDocument doc, Package package)
+		{
+			package.ID = ParseNode(doc, "Identity", true, "Id");
+			package.Name = ParseNode(doc, "DisplayName", true);
+			package.Description = ParseNode(doc, "Description", true);
+			package.Version = new Version(ParseNode(doc, "Identity", true, "Version")).ToString();
+			package.Author = ParseNode(doc, "Identity", true, "Publisher");
+			package.Icon = ParseNode(doc, "Icon", false);
+			package.Preview = ParseNode(doc, "PreviewImage", false);
+			package.Tags = ParseNode(doc, "Tags", false);
+			package.DatePublished = DateTime.UtcNow;
+			package.SupportedVersions = GetSupportedVersions(doc);
+			package.ReleaseNotesUrl = ParseNode(doc, "ReleaseNotes", false);
+			package.GettingStartedUrl = ParseNode(doc, "GettingStartedGuide", false);
+			package.MoreInfoUrl = ParseNode(doc, "MoreInfo", false);
 			package.Repo = repo;
 			package.IssueTracker = issuetracker;
+		}
 
-            string license = ParseNode(doc, "License", false);
-            if (!string.IsNullOrEmpty(license))
-            {
-                string path = Path.Combine(tempFolder, license);
-                if (File.Exists(path))
-                {
-                    package.License = File.ReadAllText(path);
-                }
-            }
+		private void Vs2010Format(string repo, string issuetracker, XmlDocument doc, Package package)
+		{
+			package.ID = ParseNode(doc, "Identifier", true, "Id");
+			package.Name = ParseNode(doc, "Name", true);
+			package.Description = ParseNode(doc, "Description", true);
+			package.Version = new Version(ParseNode(doc, "Version", true)).ToString();
+			package.Author = ParseNode(doc, "Author", true);
+			package.Icon = ParseNode(doc, "Icon", false);
+			package.Preview = ParseNode(doc, "PreviewImage", false);
+			package.DatePublished = DateTime.UtcNow;
+			package.SupportedVersions = GetSupportedVersions(doc);
+			package.ReleaseNotesUrl = ParseNode(doc, "ReleaseNotes", false);
+			package.GettingStartedUrl = ParseNode(doc, "GettingStartedGuide", false);
+			package.MoreInfoUrl = ParseNode(doc, "MoreInfo", false);
+			package.Repo = repo;
+			package.IssueTracker = issuetracker;
+		}
 
-            return package;
-        }
+		private static IEnumerable<string> GetSupportedVersions(XmlDocument doc)
+		{
+			XmlNodeList list = doc.GetElementsByTagName("InstallationTarget");
 
-        private static IEnumerable<string> GetSupportedVersions(XmlDocument doc)
-        {
-            XmlNodeList list = doc.GetElementsByTagName("InstallationTarget");
-            List<string> versions = new List<string>();
+			if (list.Count == 0)
+				list = doc.GetElementsByTagName("<VisualStudio");
 
-            foreach (XmlNode node in list)
-            {
-                string raw = node.Attributes["Version"].Value.Trim('[', '(', ']', ')');
-                string[] entries = raw.Split(',');
+			List<string> versions = new List<string>();
 
-                foreach (string entry in entries)
-                {
-                    Version v;
-                    if (Version.TryParse(entry, out v) && !versions.Contains(v.ToString()))
-                    {
-                        versions.Add(v.ToString());
-                    }
-                }
-            }
+			foreach (XmlNode node in list)
+			{
+				string raw = node.Attributes["Version"].Value.Trim('[', '(', ']', ')');
+				string[] entries = raw.Split(',');
 
-            return versions;
-        }
+				foreach (string entry in entries)
+				{
+					Version v;
+					if (Version.TryParse(entry, out v) && !versions.Contains(v.ToString()))
+					{
+						versions.Add(v.ToString());
+					}
+				}
+			}
 
-        private string ParseNode(XmlDocument doc, string name, bool required, string attribute = "")
-        {
-            XmlNodeList list = doc.GetElementsByTagName(name);
+			return versions;
+		}
 
-            if (list.Count > 0)
-            {
-                XmlNode node = list[0];
+		private string ParseNode(XmlDocument doc, string name, bool required, string attribute = "")
+		{
+			XmlNodeList list = doc.GetElementsByTagName(name);
 
-                if (string.IsNullOrEmpty(attribute))
-                    return node.InnerText;
+			if (list.Count > 0)
+			{
+				XmlNode node = list[0];
 
-                XmlAttribute attr = node.Attributes[attribute];
+				if (string.IsNullOrEmpty(attribute))
+					return node.InnerText;
 
-                if (attr != null)
-                    return attr.Value;
-            }
+				XmlAttribute attr = node.Attributes[attribute];
 
-            if (required)
-            {
-                string message = string.Format("Attribute '{0}' could not be found on the '{1}' element in the .vsixmanifest file.", attribute, name);
-                throw new Exception(message);
-            }
+				if (attr != null)
+					return attr.Value;
+			}
 
-            return null;
-        }
+			if (required)
+			{
+				string message = string.Format("Attribute '{0}' could not be found on the '{1}' element in the .vsixmanifest file.", attribute, name);
+				throw new Exception(message);
+			}
 
-    }
+			return null;
+		}
+
+	}
 }
