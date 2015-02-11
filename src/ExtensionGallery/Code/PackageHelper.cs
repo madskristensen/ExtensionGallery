@@ -90,8 +90,8 @@ namespace ExtensionGallery.Code
 				VsixManifestParser parser = new VsixManifestParser();
 				Package package = parser.CreateFromManifest(tempFolder, repo, issuetracker);
 
-				if (PackageCache.Any(p => p.ID == package.ID && new Version(p.Version) > new Version(package.Version)))
-					throw new ArgumentException("The VSIX version (" + package.Version + ") must be equal or higher than the existing VSIX");
+				//if (PackageCache.Any(p => p.ID == package.ID && new Version(p.Version) > new Version(package.Version)))
+				//	throw new ArgumentException("The VSIX version (" + package.Version + ") must be equal or higher than the existing VSIX");
 
 				string vsixFolder = Path.Combine(_extensionRoot, package.ID);
 
