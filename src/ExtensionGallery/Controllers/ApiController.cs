@@ -16,7 +16,7 @@ namespace ExtensionGallery.Controllers
 		public ApiController(IHostingEnvironment env)
 		{
 			_env = env;
-			_helper = new PackageHelper(env.WebRoot);
+			_helper = new PackageHelper(env.WebRootPath);
 		}
 
 		public object Get(string id)
