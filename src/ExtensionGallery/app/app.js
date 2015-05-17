@@ -34,6 +34,7 @@
             })
 			.when('/guide/feed/',
             {
+            	controller: 'feedguideController',
             	templateUrl: 'app/views/feedguide.html'
             })
             .otherwise(
