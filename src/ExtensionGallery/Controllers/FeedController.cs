@@ -12,7 +12,7 @@ namespace ExtensionGallery.Controllers
 
 		public FeedController(IHostingEnvironment env)
 		{
-			_helper = new PackageHelper(env.WebRoot);
+			_helper = new PackageHelper(env.WebRootPath);
 			_feed = new FeedWriter();
 		}
 
