@@ -65,7 +65,7 @@ namespace ExtensionGallery
 				//app.UseErrorHandler("/Home/Error");
 			}
 
-			app.UseErrorPage(ErrorPageOptions.ShowAll);
+			// app.UseErrorPage(ErrorPageOptions.ShowAll);
 
 			// Add static files to the request pipeline.
 			//var options = new StaticFileOptions();
