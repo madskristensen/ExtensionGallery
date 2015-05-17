@@ -36,10 +36,10 @@ namespace ExtensionGallery.Code
 		{
 			List<Package> packages = new List<Package>();
 
-            if(!Directory.Exists(_extensionRoot))
-            {
-                return packages.ToList();
-            }
+			if (!Directory.Exists(_extensionRoot))
+			{
+				return packages.ToList();
+			}
 
 			foreach (string extension in Directory.EnumerateDirectories(_extensionRoot))
 			{
