@@ -13,7 +13,7 @@
       "Microsoft.Framework.CodeGenerators.Mvc >= 1.0.0-beta4",
       "Microsoft.Framework.Logging >= 1.0.0-beta4",
       "Microsoft.Framework.Logging.Console >= 1.0.0-beta4",
-      "Newtonsoft.Json >= 6.0.7"
+      "Newtonsoft.Json >= 6.0.8"
     ],
     "DNXCore,Version=v5.0": [
       "System.Net.Http >= 4.0.0-beta-22816",
@@ -2732,9 +2732,9 @@
         "lib/portable-wpa81+wp80+win80+net45+aspnetcore50/Microsoft.Win32.Registry.dll"
       ]
     },
-    "Newtonsoft.Json/6.0.7": {
+    "Newtonsoft.Json/6.0.8": {
       "serviceable": false,
-      "sha": "fMUkl3jeQlLn1pVwCvKLRYkeQ4d2hVuE7eyUyW46b7ZZgHIeHUIcsmhLrQs5mXQQv5MUp2Ql0qqaeHiFQcCHnQ==",
+      "sha": "nZX7xCBl3PXpxRCxVtVfUXn63gSzrT8aO0VB9Tp24q656IUup9EGE8SGlo0UJ9if48OacJU34ZEtKEGWIdNCzg==",
       "frameworks": {
         "DNXCore,Version=v5.0": {
           "dependencies": {},
@@ -2748,8 +2748,8 @@
         }
       },
       "files": [
-        "Newtonsoft.Json.6.0.7.nupkg",
-        "Newtonsoft.Json.6.0.7.nupkg.sha512",
+        "Newtonsoft.Json.6.0.8.nupkg",
+        "Newtonsoft.Json.6.0.8.nupkg.sha512",
         "Newtonsoft.Json.nuspec",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
