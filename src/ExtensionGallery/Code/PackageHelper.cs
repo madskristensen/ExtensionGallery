@@ -36,6 +36,11 @@ namespace ExtensionGallery.Code
 		{
 			List<Package> packages = new List<Package>();
 
+			if (!Directory.Exists(_extensionRoot))
+			{
+				return packages.ToList();
+			}
+
 			foreach (string extension in Directory.EnumerateDirectories(_extensionRoot))
 			{
 				string json = Path.Combine(extension, "extension.json");
