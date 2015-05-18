@@ -15,7 +15,7 @@
 		</div>
 	</div>
 
-	<article data-ng-repeat="package in packages | filter: packageSearch">
+	<article data-ng-repeat="package in packages | filter: packageSearch as results">
 
 		<a class="icon" href="/extension/{{package.ID}}">
 			<img width="90" data-ng-src="{{package.Icon}}" alt="{{package.Name}}" />
@@ -39,5 +39,8 @@
 			</a>
 			<time datetime="{{package.DatePublished | date:'yyyy-MM-dd'}}">{{package.DatePublished | date:'&nbsp;MMM d. yyyy'}}</time>
 		</div>
+	</article>
+	<article ng-show="results.length == 0">
+		<h3>No extensions found</h3>
 	</article>
 </div>
