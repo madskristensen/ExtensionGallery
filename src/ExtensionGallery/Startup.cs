@@ -6,7 +6,7 @@ using Microsoft.AspNet.Diagnostics;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Routing;
 using Microsoft.AspNet.StaticFiles;
-using Microsoft.Framework.ConfigurationModel;
+using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
 
@@ -16,10 +16,10 @@ namespace ExtensionGallery
 	{
 		public Startup(IHostingEnvironment env)
 		{
-			// Setup configuration sources.
-			Configuration = new Configuration()
+            // Setup configuration sources.
+            Configuration = new ConfigurationBuilder()
 				.AddJsonFile("config.json")
-				.AddEnvironmentVariables();
+				.AddEnvironmentVariables().Build();
 		}
 
 		public IConfiguration Configuration { get; set; }
