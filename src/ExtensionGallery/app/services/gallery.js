@@ -97,7 +97,7 @@
 
         var url = package.Repo.replace("https://github.com", "https://raw.githubusercontent.com") + "master/README.md";
 
-        $http.get("http://markdownservice.azurewebsites.net/markdown.ashx?url=" + url)
+        $http.get("http://markdownservice.azurewebsites.net/markdown.ashx?url=" + escape(url))
 			.success(function (data) {
 			    callback(data);
 			})
