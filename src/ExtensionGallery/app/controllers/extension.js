@@ -1,19 +1,24 @@
 ﻿
 galleryApp.controller('extensionController', ['$scope', '$rootScope', '$location', '$route', 'dataService', function ($scope, $rootScope, $location, $route, dataService) {
 
-	var id = $route.current.params.id;
+    var id = $route.current.params.id;
 
-	dataService.getExtension(id, function (data) {
+    dataService.getExtension(id, function (data) {
 
-		if (data.error) {
-			$location.path('/');
-		}
+        if (data.error) {
+            $location.path('/');
+        }
 
-		$rootScope.pageTitle = data.Name;
+        $rootScope.pageTitle = data.Name;
 
-		$scope.package = data;
-	});
+        dataService.getMarkdown(data, function (data) {
+            if (data.error !== true)
+                $scope.package.readme = data;
+        });
 
-	window.scrollTo(0, 0);
+        $scope.package = data;
+    });
+
+    window.scrollTo(0, 0);
 
 }]);

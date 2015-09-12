@@ -45,9 +45,12 @@
 		</article>
 
 		<br />
-		<div data-ng-show="package.License" class="clearfix">
-			<h2>License</h2>
-			<pre>{{package.License}}</pre>
+		<div data-ng-show="package.readme" class="clearfix">
+			<p class="readme" ng-bind-html="package.readme | rawHtml"></p>
 		</div>
+        <div data-ng-show="package.License" class="clearfix">
+            <h2>License</h2>
+            <pre ng-bind-html="package.License | rawHtml"></pre>
+        </div>
 	</div>
 </div>
