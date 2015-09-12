@@ -11,16 +11,13 @@
     "Microsoft.Framework.Configuration.Json": "1.0.0-beta5",
     "Microsoft.Framework.CodeGenerators.Mvc": "1.0.0-beta5",
     "Microsoft.Framework.Logging": "1.0.0-beta5",
-    "Microsoft.Framework.Logging.Console": "1.0.0-beta5",
-    "Newtonsoft.Json": "6.0.8"
+    "Microsoft.Framework.Logging.Console": "1.0.0-beta5"
   },
   "commands": {
-    "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000",
-    "gen": "Microsoft.Framework.CodeGeneration",
-    "ef": "EntityFramework.Commands"
+    "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000"
   },
   "frameworks": {
-    "dnxcore50": {
+    "dnx451": {
       "dependencies": {
         "System.Net.Http": "4.0.0-beta-22816",
         "System.Xml.XmlDocument": "4.0.0-beta-22816",

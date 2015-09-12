@@ -9,15 +9,16 @@ using Microsoft.AspNet.StaticFiles;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
+using Microsoft.Framework.Runtime;
 
 namespace ExtensionGallery
 {
 	public class Startup
 	{
-		public Startup(IHostingEnvironment env)
+		public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
 		{
             // Setup configuration sources.
-            Configuration = new ConfigurationBuilder()
+            Configuration = new ConfigurationBuilder(appEnv.ApplicationBasePath)
 				.AddJsonFile("config.json")
 				.AddEnvironmentVariables().Build();
 		}

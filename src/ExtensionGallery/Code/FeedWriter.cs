@@ -72,7 +72,17 @@ namespace ExtensionGallery.Code
 			writer.WriteAttributeString("src", baseUrl + "/extensions/" + package.ID + "/extension.vsix");
 			writer.WriteEndElement(); // content
 
-			writer.WriteRaw("\r\n<Vsix xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"http://schemas.microsoft.com/developer/vsx-syndication-schema/2010\">\r\n");
+            writer.WriteStartElement("link");
+            writer.WriteAttributeString("rel", "icon");
+            writer.WriteAttributeString("href", baseUrl + "/extensions/" + package.ID + "/" + package.Icon);
+            writer.WriteEndElement(); // icon
+
+            writer.WriteStartElement("link");
+            writer.WriteAttributeString("rel", "previewimage");
+            writer.WriteAttributeString("href", baseUrl + "/extensions/" + package.ID + "/" + package.Preview);
+            writer.WriteEndElement(); // preview
+
+            writer.WriteRaw("\r\n<Vsix xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"http://schemas.microsoft.com/developer/vsx-syndication-schema/2010\">\r\n");
 
 			writer.WriteElementString("Id", package.ID);
 			writer.WriteElementString("Version", package.Version);
