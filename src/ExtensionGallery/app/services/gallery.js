@@ -29,6 +29,8 @@
 				return 2015;
 		});
 
+		package.relativeDate = moment(package.DatePublished).fromNow();
+
 		return package;
 	}
 

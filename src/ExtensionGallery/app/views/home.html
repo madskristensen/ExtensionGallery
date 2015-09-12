@@ -37,7 +37,8 @@
 			<a class="btn-sm btn-default" href="/feed/extension/{{package.ID}}" target="_self">
 				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Feed
 			</a>
-			<time datetime="{{package.DatePublished | date:'yyyy-MM-dd'}}">{{package.DatePublished | date:'&nbsp;MMM d. yyyy'}}</time>
+            Updated
+			<time datetime="{{package.DatePublished | date:'yyyy-MM-dd'}}">{{package.relativeDate}}</time>
 		</div>
 	</article>
 	<article ng-show="results.length == 0">

@@ -32,6 +32,11 @@
             	controller: 'uploadController',
             	templateUrl: 'app/views/upload.html'
             })
+            .when('/guide/dev/',
+            {
+                controller: 'devguideController',
+                templateUrl: 'app/views/devguide.html'
+            })
 			.when('/guide/feed/',
             {
             	controller: 'feedguideController',

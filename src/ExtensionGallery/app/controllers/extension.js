@@ -14,4 +14,6 @@ galleryApp.controller('extensionController', ['$scope', '$rootScope', '$location
 		$scope.package = data;
 	});
 
+	window.scrollTo(0, 0);
+
 }]);
