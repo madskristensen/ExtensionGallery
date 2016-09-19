@@ -96,6 +96,9 @@
         }
 
         var url = package.Repo.replace("https://github.com", "https://raw.githubusercontent.com") + "master/README.md";
+        if (package.Repo.indexOf("bitbucket") > -1) {
+            url = package.Repo + "raw/tip/README.md";
+        }
 
         $http.get("http://markdownservice.azurewebsites.net/markdown.ashx?url=" + escape(url))
 			.success(function (data) {
