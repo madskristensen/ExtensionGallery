@@ -52,7 +52,7 @@ namespace ExtensionGallery.Code
 
 			writer.WriteStartElement("link");
 			writer.WriteAttributeString("rel", "alternate");
-			writer.WriteAttributeString("href", baseUrl + "/extensions/" + package.ID + "/extension.vsix");
+			writer.WriteAttributeString("href", baseUrl + "/extension/" + package.ID);
 			writer.WriteEndElement(); // link
 
 			writer.WriteStartElement("summary");
